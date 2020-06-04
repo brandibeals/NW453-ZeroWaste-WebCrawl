@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://zerowastecalifornia.org/xmlrpc.php">
+
+<title>Zero Waste California &#8211; Zero Waste Tips for Everyday Living</title>
+<script type="text/javascript">
+  WebFontConfig = {"google":{"families":["Montserrat:r:latin,latin-ext"]}};
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = 'https://s0.wp.com/wp-content/plugins/custom-fonts/js/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+	})();
+</script><style id="jetpack-custom-fonts-css">.wf-active h1{font-style:normal;font-weight:400}.wf-active .site-title{font-family:"Montserrat",sans-serif;font-weight:400;font-style:normal}.wf-active .site-description{font-family:"Montserrat",sans-serif;font-style:normal;font-weight:400}.wf-active .widget-title{font-family:"Montserrat",sans-serif;font-weight:400;font-style:normal}.wf-active .archive-title, .wf-active .entry-title, .wf-active .page-title{font-family:"Montserrat",sans-serif;font-weight:400;font-style:normal}.wf-active .post-layout-columns .post-wrapper .post-column article .entry-title{font-style:normal;font-weight:400}.wf-active .comment-reply-title span, .wf-active .comments-header .comments-title{font-family:"Montserrat",sans-serif;font-weight:400;font-style:normal}@media (max-width: 80em){.wf-active .site-description{font-style:normal;font-weight:400}}@media (max-width: 70em){.wf-active .post-layout-columns .post-wrapper .post-column article .entry-title{font-style:normal;font-weight:400}}@media (max-width: 60em){.wf-active .site-description{font-style:normal;font-weight:400}}@media (max-width: 60em){.wf-active .archive-title, .wf-active .entry-title, .wf-active .page-title{font-style:normal;font-weight:400}}@media (max-width: 60em){.wf-active .post-layout-columns .post-wrapper .post-column article .entry-title{font-style:normal;font-weight:400}}</style>
+
+<!-- Async WordPress.com Remote Login -->
+<script id="wpcom_remote_login_js">
+var wpcom_remote_login_extra_auth = '';
+function wpcom_remote_login_remove_dom_node_id( element_id ) {
+	var dom_node = document.getElementById( element_id );
+	if ( dom_node ) { dom_node.remove(); }
+}
+function wpcom_remote_login_remove_dom_node_classes( class_name ) {
+	var dom_nodes = document.querySelectorAll( '.' + class_name );
+	for ( var i = 0; i < dom_nodes.length; i++ ) {
+		dom_nodes[i].remove();
+	}
+}
+function wpcom_remote_login_final_cleanup() {
+	wpcom_remote_login_remove_dom_node_classes( "wpcom_remote_login_msg" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_validate" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_js" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_iframe" );
+	wpcom_remote_login_remove_dom_node_id( "wpcom_request_access_styles" );
+}
+
+// Watch for messages back from the remote login
+window.addEventListener( "message", function( e ) {
+	if ( e.origin === "https://r-login.wordpress.com" ) {
+		var data = {};
+		try {
+			data = JSON.parse( e.data );
+		} catch( e ) {
+			wpcom_remote_login_final_cleanup();
+			return;
+		}
+
+		if ( data.msg === 'LOGIN' ) {
+			// Clean up the login check iframe
+			wpcom_remote_login_remove_dom_node_id( "wpcom_remote_login_key" );
+
+			var id_regex = new RegExp( /^[0-9]+$/ );
+			var token_regex = new RegExp( /^.*|.*|.*$/ );
+			if (
+				token_regex.test( data.token )
+				&& id_regex.test( data.wpcomid )
+			) {
+				// We have everything we need to ask for a login
+				var script = document.createElement( "script" );
+				script.setAttribute( "id", "wpcom_remote_login_validate" );
+				script.src = '/remote-login.php?wpcom_remote_login=validate'
+					+ '&wpcomid=' + data.wpcomid
+					+ '&token=' + encodeURIComponent( data.token )
+					+ '&host=' + window.location.protocol
+						+ '//' + window.location.hostname;
+				document.body.appendChild( script );
+			}
+
+			return;
+		}
+
+		// Safari ITP, not logged in, so redirect
+		if ( data.msg === 'LOGIN-REDIRECT' ) {
+			window.location = 'https://wordpress.com/log-in?redirect_to=' + window.location.href;
+			return;
+		}
+
+		// Safari ITP, storage access failed, remove the request
+		if ( data.msg === 'LOGIN-REMOVE' ) {
+			var css_zap = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } @media screen and ( max-width: 782px ) { html { margin-top: 0 !important; } * html body { margin-top: 0 !important; } }';
+			var style_zap = document.createElement( 'style' );
+			style_zap.type = 'text/css';
+			style_zap.appendChild( document.createTextNode( css_zap ) );
+			document.body.appendChild( style_zap );
+
+			var e = document.getElementById( 'wpcom_request_access_iframe' );
+			e.parentNode.removeChild( e );
+
+			document.cookie = 'wordpress_com_login_access=denied; path=/; max-age=31536000';
+
+			return;
+		}
+
+		// Safari ITP
+		if ( data.msg === 'REQUEST_ACCESS' ) {
+			console.log( 'request access: safari' );
+
+			// Check ITP iframe enable/disable knob
+			if ( wpcom_remote_login_extra_auth !== 'safari_itp_iframe' ) {
+				return;
+			}
+
+			// If we are in a "private window" there is no ITP.
+			var private_window = false;
+			try {
+				var opendb = window.openDatabase( null, null, null, null );
+			} catch( e ) {
+				private_window = true;
+			}
+
+			if ( private_window ) {
+				console.log( 'private window' );
+				return;
+			}
+
+			var iframe = document.createElement( 'iframe' );
+			iframe.id = 'wpcom_request_access_iframe';
+			iframe.setAttribute( 'scrolling', 'no' );
+			iframe.setAttribute( 'sandbox', 'allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-top-navigation-by-user-activation' );
+			iframe.src = 'https://r-login.wordpress.com/remote-login.php?wpcom_remote_login=request_access&origin=' + encodeURIComponent( data.origin ) + '&wpcomid=' + encodeURIComponent( data.wpcomid );
+
+			var css = 'html { -webkit-transition: margin-top 1s; transition: margin-top 1s; } /* 9001 */ html { margin-top: 46px !important; } * html body { margin-top: 46px !important; } @media screen and ( max-width: 660px ) { html { margin-top: 71px !important; } * html body { margin-top: 71px !important; } #wpcom_request_access_iframe { display: block; height: 71px !important; } } #wpcom_request_access_iframe { border: 0px; height: 46px; position: fixed; top: 0; left: 0; width: 100%; min-width: 100%; z-index: 99999; background: #23282d; } ';
+
+			var style = document.createElement( 'style' );
+			style.type = 'text/css';
+			style.id = 'wpcom_request_access_styles';
+			style.appendChild( document.createTextNode( css ) );
+			document.body.appendChild( style );
+
+			document.body.appendChild( iframe );
+		}
+
+		if ( data.msg === 'DONE' ) {
+			wpcom_remote_login_final_cleanup();
+		}
+	}
+}, false );
+
+// Inject the remote login iframe after the page has had a chance to load
+// more critical resources
+window.addEventListener( "DOMContentLoaded", function( e ) {
+	var iframe = document.createElement( "iframe" );
+	iframe.style.display = "none";
+	iframe.setAttribute( "scrolling", "no" );
+	iframe.setAttribute( "id", "wpcom_remote_login_key" );
+	iframe.src = "https://r-login.wordpress.com/remote-login.php"
+		+ "?wpcom_remote_login=key"
+		+ "&origin=aHR0cHM6Ly96ZXJvd2FzdGVjYWxpZm9ybmlhLm9yZw%3D%3D"
+		+ "&wpcomid=131016930"
+		+ "&time=1590261735";
+	document.body.appendChild( iframe );
+}, false );
+</script>
+<link rel='dns-prefetch' href='//s1.wp.com' />
+<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//zerowastecalifornia.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Zero Waste California &raquo; Feed" href="https://zerowastecalifornia.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Zero Waste California &raquo; Comments Feed" href="https://zerowastecalifornia.org/comments/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s2.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1582709031h&ver=5.4.1"}};
+			/*! This file is auto-generated */
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='all-css-0-1' href='https://s1.wp.com/_static/??-eJytU9lywyAM/KFiQp1OkodOvwXbMlXK4UEiHv998ZFMJ1evvIGk3ZUWIftO1MEzeJYuic4mg55k39XBCXJoYTi7FTXRk7wOQ9+iRx5Oh4viY6VJ+VpBNDkTQW4LVazEpCOrhLaRlQ31h7BYRR0HSTxY+AHZhCK5B+70CNdDSCxMxOavFFEzekPfwNtkrSBkENDgCFgskUqtynJdqq300NPEuAg0SDxOmUsDMc1hcUDoH65S6xgSgX2QRhfBYXIn6H1r6rC0oornslgtHS1B8W9bZ/NsJp2nm/nPo/eWdlzAHHed5rHCZSkNFlwuuwebP0VVZTeIxNETfs/Ayz/yq01dUm0MVzqYBY5vIDlETkbfeIMv7RrwEDEnbhxH7Jt7VS/b3W63WW/U/hNPyYdO?cssminify=yes' type='text/css' media='all' />
+<style id='wp-block-library-inline-css'>
+.has-text-align-justify {
+	text-align:justify;
+}
+</style>
+<style id='tortuga-stylesheet-inline-css'>
+.entry-tags { clip: rect(1px, 1px, 1px, 1px); height: 1px; position: absolute; overflow: hidden; width: 1px; }
+</style>
+<link crossorigin="anonymous" rel='stylesheet' id='tortuga-default-fonts-css'  href='https://fonts.googleapis.com/css?family=Titillium+Web%3A400%2C400italic%2C700%2C700italic%7COpen+Sans%3A400%2C400italic%2C700%2C700italic&#038;subset=latin%2Clatin-ext' media='all' />
+<link rel='stylesheet' id='all-css-2-1' href='https://s0.wp.com/_static/??-eJx9jsEOgjAMQH/IWUmEhIPxW8osc6Zdl62Lfr7gBbxwey/pawvv7Lwmo2RgTxKqkAtJbAKmxVpA8LXCzPSpHB9UzoueYFdJc5lbiKlCVR+RnVBqez5KAqlj9WhR05+4mTEeXis0sYYFw+/FTY8i9OvyCctG6/hdbl0/XK7D2I396ws/LGeZ?cssminify=yes' type='text/css' media='all' />
+<style id='jetpack-global-styles-frontend-style-inline-css'>
+:root { --font-headings: unset; --font-base: unset; --font-headings-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; --font-base-default: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;}
+</style>
+<link rel='stylesheet' id='all-css-4-1' href='https://s0.wp.com/wp-content/themes/h4/global.css?m=1420737423h&cssminify=yes' type='text/css' media='all' />
+<script>
+var tortuga_menu_title = "Menu";
+</script>
+<script type='text/javascript' src='https://s0.wp.com/_static/??-eJyNkOsKwjAMhV/Ircjo8I/4LHXLakbT1ib18vZ2MPE6EQL5ke/kcI46xwp953IPrMYyxwzpOq965JX6BVSENhmBmtDf4S54AS8TGwMLAbOx8OVKYY8OqsyQCuCl2AzhnZMDlA8qJiDMpCQkydZMcm9OaI1g+HBe1syxBgcXdthD+l/6yj83wvERfrnKmdrRdq31ptFtq5vxBnVWj0A='></script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1530132353h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://zerowastecalifornia.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress.com" />
+<link rel='shortlink' href='https://wp.me/8RJui' />
+
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Zero Waste California" />
+<meta property="og:description" content="Zero Waste Tips for Everyday Living" />
+<meta property="og:url" content="https://zerowastecalifornia.org/" />
+<meta property="og:site_name" content="Zero Waste California" />
+<meta property="og:image" content="https://zerowastecalifornia.files.wordpress.com/2017/06/cropped-whtw-opengraph-img-1.png?w=200" />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@Zero_Waste_Cali" />
+<meta name="twitter:site" content="@Zero_Waste_Cali" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="search" type="application/opensearchdescription+xml" href="https://zerowastecalifornia.org/osd.xml" title="Zero Waste California" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+<meta name="theme-color" content="#27c2e1" />
+<meta name="application-name" content="Zero Waste California" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Zero Waste Tips for Everyday Living" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://zerowastecalifornia.org/feed/;icon-uri=https://zerowastecalifornia.files.wordpress.com/2017/06/cropped-whtw-opengraph-img-1.png?w=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="description" content="Zero Waste Tips for Everyday Living" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #27c2e1; }
+</style>
+	<style type="text/css" id="custom-colors-css">.primary-navigation-wrap{background-color:transparent}.main-navigation-menu a:hover,.main-navigation-menu a:hover:after,.main-navigation-menu a:active,.main-navigation-menu a:active:after{color:#fff !important}.main-navigation-menu li.current-menu-item>a,.main-navigation-menu li.current-menu-item>a:after:hover,.main-navigation-menu ul .menu-item-has-children>a:after:hover,.widget_wpcom_social_media_icons_widget ul li a{color:#fff !important}.widget_tag_cloud div a:link,.footer-widgets .widget_tag_cloud div a:link,.widget_tag_cloud div a:hover,.footer-widgets .widget_tag_cloud div a:hover,.widget_tag_cloud div a:active,.footer-widgets .widget_tag_cloud div a:active,.widget_tag_cloud div a:visited,.footer-widgets .widget_tag_cloud div a:visited,.wp_widget_tag_cloud div a:link,.footer-widgets .wp_widget_tag_cloud div a:link,.wp_widget_tag_cloud div a:hover,.footer-widgets .wp_widget_tag_cloud div a:hover,.wp_widget_tag_cloud div a:active,.footer-widgets .wp_widget_tag_cloud div a:active,.wp_widget_tag_cloud div a:visited,.footer-widgets .wp_widget_tag_cloud div a:visited{color:#fff !important}.rtl blockquote{border-left-color:#ddd !important}.entry-meta a:hover,.entry-meta a:active,.footer-widgets .widget a:hover,.footer-widgets .widget a:active,.site-footer a:hover,.site-footer a:active{opacity:.8}.footer-widgets .widget_tag_cloud div a:hover,.footer-widgets .widget_tag_cloud div a:active,.footer-widgets .wp_widget_tag_cloud div a:hover,.footer-widgets .wp_widget_tag_cloud div a:active{opacity:1.0}.a-stats a{color:#fff !important}.site-header,.site-title a:link,.site-title a:visited,.main-navigation-menu a:link,.main-navigation-menu a:visited,.top-navigation-menu a:link,.top-navigation-menu a:visited,.main-navigation-menu>.menu-item-has-children>a:after,.top-navigation-menu>.menu-item-has-children>a:after,.main-navigation-menu ul .menu-item-has-children>a:after,.top-navigation-menu ul .menu-item-has-children>a:after,.jetpack-social-navigation .menu li a:before,.footer-widgets .widget-title,.footer-widgets .widget a:link,.footer-widgets .widget a:visited,.footer-widgets .widget,.site-footer,.site-footer a:link,.site-footer a:visited{color:#fff}.main-navigation-menu a:hover,.top-navigation-menu a:hover{color:#fff}.site-footer a:link,.site-footer a:visited{border-color:#fff}body{background-color:#27c2e1}body a:hover,body a:focus,body a:active,body .widget_flickr #flickr_badge_uber_wrapper a:hover,body .widget_flickr #flickr_badge_uber_wrapper a:active,body .entry-title a:hover,body .entry-title a:active,.entry-meta,.entry-meta a:link,.entry-meta a:visited{color:#605951}button:hover,input[type=button]:hover,input[type=reset]:hover,input[type=submit]:hover,button:focus,input[type=button]:focus,input[type=reset]:focus,input[type=submit]:focus,button:active,input[type=button]:active,input[type=reset]:active,input[type=submit]:active,.widget_wpcom_social_media_icons_widget ul li a:hover,.more-link:hover,.more-link:active,.widget_tag_cloud .tagcloud a,.entry-tags .meta-tags a,.widget_tag_cloud div a,.wp_widget_tag_cloud div a,.post-navigation .nav-links a:hover,.post-navigation .nav-links a:active,.post-pagination a,.post-pagination .current,.infinite-scroll #infinite-handle span,.post-slider-controls .zeeflex-direction-nav a:hover,.post-slider-controls .zeeflex-direction-nav a:active{background:#605951}.site-header,.main-navigation-menu ul,.footer-widgets-wrap{background:#605951}.header-bar-wrap{background:#524c46}.primary-navigation-wrap,.footer-wrap,.top-navigation-menu ul{background:#44403a}a,a:link,a:visited,.widget-title,.widget_flickr #flickr_badge_uber_wrapper a:link,.widget_flickr #flickr_badge_uber_wrapper a:visited,.archive-title,.page-title,.entry-title,.entry-title a:link,.entry-title a:visited,.comments-header .comments-title,.comment-reply-title span{color:#17a2be}button,input[type=button],input[type=reset],input[type=submit],.main-navigation-menu a:hover,.main-navigation-menu a:active,.main-navigation-menu li.current-menu-item>a,.widget_wpcom_social_media_icons_widget ul li a,.more-link,.entry-tags .meta-tags a:hover,.entry-tags .meta-tags a:active,.widget_tag_cloud div a:hover,.widget_tag_cloud div a:active,.wp_widget_tag_cloud div a:hover,.wp_widget_tag_cloud div a:active,.post-navigation .nav-links a,.post-pagination a:hover,.post-pagination a:active,.post-pagination .current,.infinite-scroll #infinite-handle span:hover,.main-navigation-toggle,.main-navigation-toggle:active,.main-navigation-toggle:focus,.main-navigation-toggle:hover,.main-navigation-menu .submenu-dropdown-toggle:hover,.main-navigation-menu .submenu-dropdown-toggle:active,.post-slider-controls .zeeflex-direction-nav a{background:#17a2be}.primary-navigation-wrap,.main-navigation-menu ul,.widget,.type-post,.type-page,.type-attachment,.comments-area,.sticky,.page-header,.main-navigation-menu-wrap{border-color:#17a2be}blockquote{border-left-color:#17a2be}.rtl blockquote{border-right-color:#17a2be}</style>
+<link rel="icon" href="https://zerowastecalifornia.files.wordpress.com/2017/06/cropped-whtw-opengraph-img-1.png?w=32" sizes="32x32" />
+<link rel="icon" href="https://zerowastecalifornia.files.wordpress.com/2017/06/cropped-whtw-opengraph-img-1.png?w=192" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://zerowastecalifornia.files.wordpress.com/2017/06/cropped-whtw-opengraph-img-1.png?w=180" />
+<meta name="msapplication-TileImage" content="https://zerowastecalifornia.files.wordpress.com/2017/06/cropped-whtw-opengraph-img-1.png?w=270" />
+</head>
+
+<body class="home blog custom-background customizer-styles-applied post-layout-two-columns post-layout-columns tags-hidden highlander-enabled highlander-light infinite-scroll neverending">
+
+	<div id="page" class="hfeed site">
+
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+		<div id="header-top" class="header-bar-wrap">
+
+			
+<div id="header-bar" class="header-bar container clearfix">
+
+			<nav class="jetpack-social-navigation jetpack-social-navigation-genericons" role="navigation" aria-label="Social Links Menu">
+			<div class="menu-social-media-container"><ul id="menu-social-media" class="menu"><li id="menu-item-4958" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4958"><a href="https://www.youtube.com/channel/UC4yHmj7JlVHssmd4QE6JisA"><span class="screen-reader-text">Zero Waste TV</span></a></li>
+<li id="menu-item-14" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14"><a href="https://www.instagram.com/zerowastecalifornia/"><span class="screen-reader-text">Instagram</span></a></li>
+<li id="menu-item-11" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11"><a href="https://www.facebook.com/zerowastecali/"><span class="screen-reader-text">Facebook</span></a></li>
+<li id="menu-item-13" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13"><a target="_blank" rel="noopener noreferrer" href="https://twitter.com/Zero_Waste_Cali"><span class="screen-reader-text">Twitter</span></a></li>
+</ul></div>		</nav><!-- .jetpack-social-navigation -->
+		<nav id="top-navigation" class="secondary-navigation navigation clearfix" role="navigation"></nav>
+</div>
+
+		</div>
+
+		<header id="masthead" class="site-header clearfix" role="banner">
+
+			<div class="header-main container clearfix">
+
+				<div id="logo" class="site-branding clearfix">
+
+										
+			<h1 class="site-title"><a href="https://zerowastecalifornia.org/" rel="home">Zero Waste California</a></h1>
+
+							
+			<p class="site-description">Zero Waste Tips for Everyday Living</p>
+
+		
+				</div><!-- .site-branding -->
+
+			</div><!-- .header-main -->
+
+			<div id="main-navigation-wrap" class="primary-navigation-wrap">
+
+				<nav id="main-navigation" class="primary-navigation navigation container clearfix" role="navigation">
+
+					<div class="main-navigation-menu-wrap">
+						<ul id="menu-primary" class="main-navigation-menu"><li id="menu-item-2160" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2160"><a href="https://zerowastecalifornia.wordpress.com">Home</a></li>
+<li id="menu-item-2210" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2210"><a href="https://zerowastecalifornia.org/about/">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-2468" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2468"><a href="https://zerowastecalifornia.org/about/">About</a></li>
+	<li id="menu-item-116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-116"><a href="https://zerowastecalifornia.org/why-zero-waste/">Why Zero Waste?</a></li>
+</ul>
+</li>
+<li id="menu-item-657" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-657"><a href="https://zerowastecalifornia.org/zero-waste-hacks/">Zero Waste Hacks</a>
+<ul class="sub-menu">
+	<li id="menu-item-2125" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2125"><a href="https://zerowastecalifornia.org/zero-waste-hacks/">Zero Waste Hacks</a></li>
+	<li id="menu-item-2124" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2124"><a href="https://zerowastecalifornia.org/bulk-grocery-stores/">California Bulk Food Stores and Refill Stations</a></li>
+	<li id="menu-item-2936" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2936"><a href="https://zerowastecalifornia.org/bathroom/">Bathroom</a></li>
+	<li id="menu-item-2744" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2744"><a href="https://zerowastecalifornia.org/kitchen/">Kitchen Hacks</a>
+	<ul class="sub-menu">
+		<li id="menu-item-2462" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2462"><a href="https://zerowastecalifornia.org/recipes/">Recipes</a></li>
+		<li id="menu-item-2126" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2126"><a href="https://zerowastecalifornia.org/2018/06/30/storing-produce/">Storing Produce</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3018" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3018"><a href="https://zerowastecalifornia.org/zero-waste-dogs/">Zero Waste Dogs</a>
+	<ul class="sub-menu">
+		<li id="menu-item-3023" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3023"><a href="https://zerowastecalifornia.org/2018/08/01/be-a-sustainable-dog-parent/">Be a Sustainable Dog Parent</a></li>
+		<li id="menu-item-3019" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3019"><a href="https://zerowastecalifornia.org/2018/06/30/zero-waste-dog-poop/">Zero Waste Dog Poop</a></li>
+		<li id="menu-item-3020" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3020"><a href="https://zerowastecalifornia.org/2018/07/14/day-14-dog-food/">Day 14: Dog food</a></li>
+		<li id="menu-item-3022" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3022"><a href="https://zerowastecalifornia.org/2018/08/02/barkies-dog-treat-recipe-easy/">Barkies: Dog Treat Recipe *Easy*</a></li>
+		<li id="menu-item-3021" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3021"><a href="https://zerowastecalifornia.org/2018/08/02/gogo-biscuits-dog-treat-recipe/">Gogo Biscuits: Dog Treat Recipe</a></li>
+	</ul>
+</li>
+	<li id="menu-item-3010" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-3010"><a href="https://zerowastecalifornia.org/new-the-12-days-of-wastefulness/">Holidays</a>
+	<ul class="sub-menu">
+		<li id="menu-item-4728" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-4728"><a href="https://zerowastecalifornia.org/christmas/">Christmas</a>
+		<ul class="sub-menu">
+			<li id="menu-item-3011" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3011"><a href="https://zerowastecalifornia.org/2018/11/26/the-12-days-of-wastefulness/">The 12 Days of Wastefulness</a></li>
+			<li id="menu-item-3013" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3013"><a href="https://zerowastecalifornia.org/2018/11/27/christmas-tree-alternatives/">Day 1: Christmas Trees</a></li>
+			<li id="menu-item-3012" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3012"><a href="https://zerowastecalifornia.org/2018/11/27/day-2-gift-giving/">Day 2: Gift Giving</a></li>
+			<li id="menu-item-3049" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3049"><a href="https://zerowastecalifornia.org/2018/11/28/day-3-gift-wrapping/">Day 3: Gift Wrapping</a></li>
+			<li id="menu-item-3159" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3159"><a href="https://zerowastecalifornia.org/2018/12/14/day-4-charity/">Day 4: Charity</a></li>
+			<li id="menu-item-3160" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3160"><a href="https://zerowastecalifornia.org/2018/12/17/day-5-greeting-cards/">Day 5: Greeting Cards</a></li>
+			<li id="menu-item-3161" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3161"><a href="https://zerowastecalifornia.org/2018/12/18/day-6-stockings-and-stuffers/">Day 6: Stockings and Stuffers</a></li>
+			<li id="menu-item-3215" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3215"><a href="https://zerowastecalifornia.org/2018/12/18/day-7-company-parties/">Day 7: Company Parties</a></li>
+			<li id="menu-item-3216" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3216"><a href="https://zerowastecalifornia.org/2018/12/19/day-8-christmas-decorations/">Day 8: Christmas Decorations</a></li>
+			<li id="menu-item-3327" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3327"><a href="https://zerowastecalifornia.org/2018/12/21/day-9-baking/">Day 9: Baking</a></li>
+			<li id="menu-item-3328" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3328"><a href="https://zerowastecalifornia.org/2018/12/24/day-10-christmas-lights/">Day 10: Christmas Lights</a></li>
+			<li id="menu-item-3329" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3329"><a href="https://zerowastecalifornia.org/2018/12/25/day-11-go-slow/">Day 11: Go Slow!</a></li>
+			<li id="menu-item-3330" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3330"><a href="https://zerowastecalifornia.org/2018/12/26/day-12-cleaning-up/">Day 12: Cleaning Up</a></li>
+		</ul>
+</li>
+		<li id="menu-item-4729" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4729"><a href="https://zerowastecalifornia.org/halloween/">Halloween</a></li>
+		<li id="menu-item-2099" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2099"><a href="https://zerowastecalifornia.org/plastic-free-challenge/">Plastic Free July Challenge!</a>
+		<ul class="sub-menu">
+			<li id="menu-item-2100" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2100"><a href="https://zerowastecalifornia.org/2018/07/01/day-1-plastic-free-challenge/">Day 1: Plastic Free Challenge</a></li>
+			<li id="menu-item-2101" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2101"><a href="https://zerowastecalifornia.org/2018/07/02/day-2-straws/">Day 2: Straws</a></li>
+			<li id="menu-item-2102" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2102"><a href="https://zerowastecalifornia.org/2018/07/03/day-3-plastic-utensils/">Day 3: Plastic Utensils</a></li>
+			<li id="menu-item-2103" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2103"><a href="https://zerowastecalifornia.org/2018/07/04/day-4-refill-your-water-bottle/">Day 4: Refill your Water Bottle</a></li>
+			<li id="menu-item-2104" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2104"><a href="https://zerowastecalifornia.org/2018/07/05/day-5-coffee-cup/">Day 5: Coffee Cups</a></li>
+			<li id="menu-item-2105" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2105"><a href="https://zerowastecalifornia.org/2018/07/06/day-6-reusable-bags/">Day 6: Reusable Bags</a></li>
+			<li id="menu-item-2106" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2106"><a href="https://zerowastecalifornia.org/2018/07/07/day-7-to-go-containers/">Day 7: To-Go Containers</a></li>
+			<li id="menu-item-2107" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2107"><a href="https://zerowastecalifornia.org/2018/07/08/day-8-wrapping-up-the-week/">Day 8: Wrapping up the Week</a></li>
+			<li id="menu-item-2108" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2108"><a href="https://zerowastecalifornia.org/2018/07/09/day-9-paper-towels/">Day 9: Paper Towels</a></li>
+			<li id="menu-item-2109" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2109"><a href="https://zerowastecalifornia.org/2018/07/10/day-10-food-storage/">Day 10: Food Storage</a></li>
+			<li id="menu-item-2110" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2110"><a href="https://zerowastecalifornia.org/2018/07/11/day-11-shopping-in-bulk/">Day 11: Bulk Shopping</a></li>
+			<li id="menu-item-2111" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2111"><a href="https://zerowastecalifornia.org/2018/07/12/day-12-composting/">Day 12: Composting</a></li>
+			<li id="menu-item-2112" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2112"><a href="https://zerowastecalifornia.org/2018/07/13/day-13-cleaning-products/">Day 13: Cleaning Products</a></li>
+			<li id="menu-item-2113" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2113"><a href="https://zerowastecalifornia.org/2018/07/14/day-14-dog-food/">Day 14: Dog food</a></li>
+			<li id="menu-item-2114" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2114"><a href="https://zerowastecalifornia.org/2018/07/15/day-15-wrapping-up-the-week/">Day 15: Wrapping up the Week</a></li>
+			<li id="menu-item-2115" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2115"><a href="https://zerowastecalifornia.org/2018/07/16/day-16-dental-care/">Day 16: Dental Care</a></li>
+			<li id="menu-item-2116" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2116"><a href="https://zerowastecalifornia.org/2018/07/17/day-17-mascara/">Day 17: Mascara</a></li>
+			<li id="menu-item-2117" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2117"><a href="https://zerowastecalifornia.org/2018/07/18/day-18-cups-and-pads/">Day 18: Cups and Pads</a></li>
+			<li id="menu-item-2118" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2118"><a href="https://zerowastecalifornia.org/2018/07/19/day-19-shaving/">Day  19: Shaving</a></li>
+			<li id="menu-item-2119" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2119"><a href="https://zerowastecalifornia.org/2018/07/20/day-20-shampoo-bars-and-soap/">Day 20: Shampoo Bars and Soap</a></li>
+			<li id="menu-item-2120" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2120"><a href="https://zerowastecalifornia.org/2018/07/21/day-21-refilling-lotion-and-more/">Day 21: Refilling (Lotion and More!)</a></li>
+			<li id="menu-item-2121" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2121"><a href="https://zerowastecalifornia.org/2018/07/22/day-22-wrapping-up-the-week/">Day 22: Wrapping up the Week</a></li>
+			<li id="menu-item-2122" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2122"><a href="https://zerowastecalifornia.org/2018/07/23/day-23-school-supplies/">Day 23: School Supplies</a></li>
+			<li id="menu-item-2226" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2226"><a href="https://zerowastecalifornia.org/2018/07/24/day-24-toys/">Day 24: Toys</a></li>
+			<li id="menu-item-2360" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2360"><a href="https://zerowastecalifornia.org/2018/07/25/day-25-kids-birthday-parties/">Day 25 :  Birthday Parties</a></li>
+			<li id="menu-item-2361" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2361"><a href="https://zerowastecalifornia.org/2018/07/26/day-26-diapers/">Day 26: Diapers</a></li>
+			<li id="menu-item-2362" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2362"><a href="https://zerowastecalifornia.org/2018/07/27/day-27-reusable-wipes-and-diy-lotion/">Day 27: Reusable Wipes and DIY Lotion!</a></li>
+			<li id="menu-item-2363" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2363"><a href="https://zerowastecalifornia.org/2018/07/28/day-28-thrift-stores/">Day 28: Second Hand Clothes</a></li>
+			<li id="menu-item-2364" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2364"><a href="https://zerowastecalifornia.org/2018/07/29/day-29-wrapping-up-week-four/">Day 29: Wrapping Up Week Four</a></li>
+			<li id="menu-item-2365" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2365"><a href="https://zerowastecalifornia.org/2018/07/30/day-30-inspiring-others/">Day 30: Inspiring Others</a></li>
+			<li id="menu-item-2388" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2388"><a href="https://zerowastecalifornia.org/2018/07/31/day-31-you-did-it/">Day 31: YOU DID IT!</a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-5013" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5013"><a href="https://zerowastecalifornia.org/shop/">Supplies</a>
+<ul class="sub-menu">
+	<li id="menu-item-5033" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5033"><a href="https://zerowastecalifornia.org/bathroom-2/">Bathroom Supplies</a></li>
+	<li id="menu-item-5029" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5029"><a href="https://zerowastecalifornia.org/2019/10/28/zero-waste-kitchen-supplies/">Kitchen Supplies</a></li>
+	<li id="menu-item-5341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5341"><a href="https://zerowastecalifornia.org/on-the-go/">On The Go</a></li>
+</ul>
+</li>
+<li id="menu-item-4371" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4371"><a href="https://zerowastecalifornia.org/usbulklist/">U.S. Bulk Food Stores List *NEW*</a></li>
+</ul>					</div>
+
+				</nav><!-- #main-navigation -->
+
+			</div>
+
+		</header><!-- #masthead -->
+
+		
+			<div id="headimg" class="header-image">
+
+				<a href="https://zerowastecalifornia.org/" rel="home">
+
+					<img src="https://zerowastecalifornia.files.wordpress.com/2018/08/cropped-28879217880_c2a4b63840_b.jpg" />
+
+				</a>
+
+			</div>
+
+		
+		<div id="content" class="site-content container clearfix">
+
+	<div id="post-slider-container" class="post-slider-container type-page clearfix">
+
+		<div id="post-slider-wrap" class="post-slider-wrap clearfix">
+
+			<div id="post-slider" class="post-slider zeeflexslider">
+
+				<ul class="zeeslides">
+
+					
+<li id="slide-6729" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=1024&amp;h=552&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6755" data-permalink="https://zerowastecalifornia.org/screenshot_20200515-1513164329419753095087632/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png" data-orig-size="2048,1148" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="screenshot_20200515-1513164329419753095087632.png" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" rel="bookmark">Tepache &#8211; Pineapple &#8220;Beer&#8221; Recipe</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" title="3:20 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-05-15T15:20:16-07:00">May 15, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>Watch the recipe video here: What is tepache? Tepache! Pronounced teh-PAH-chay. A delicious pineapple drink that originates from Mexico and is the best way to</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6737" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6742" data-permalink="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/pineapple-643112_1920/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg" data-orig-size="1920,1280" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="pineapple-643112_1920" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" rel="bookmark">Regrow Your Pineapple!</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" title="2:48 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-05-15T14:48:07-07:00">May 15, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>Have you noticed a theme yet? We LOVE regrowing our produce whenever possible. And considering how many fruits and veggies regrow so easily, there are</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6681" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=768&amp;h=413&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6703" data-permalink="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/picsart_04-24-05-20-07/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg" data-orig-size="2643,1982" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;325195123025101&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="PicsArt_04-24-05.20.07" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" rel="bookmark">COVID 19 UPDATE: Bulk, Refill and Zero Waste Store Hours, Closures, and Policies</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" title="5:24 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-24T17:24:03-07:00">April 24, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>Posted 4/24/20 With new mandates, policies, and closings happening almost daily, it&#8217;s hard to keep track of who&#8217;s open and what their new protocols are.</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6671" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6672" data-permalink="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/silhouette-wing-light-sky-sun-sunrise-755375-pxhere-com/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg" data-orig-size="6960,4645" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;4.5&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;NIKON D800&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;55&quot;,&quot;iso&quot;:&quot;80&quot;,&quot;shutter_speed&quot;:&quot;0.0003125&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" rel="bookmark">Earth Day Discussion Prompt for Early Elementary School Students</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" title="12:46 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-22T12:46:31-07:00">April 22, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>Earth Day Discussion Prompt for Early Elementary School Students By @LessHasteAndLessWaste I’m a teaching assistant for a kindergarten class. I was excited to create this</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6399" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=1024&amp;h=552&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6397" data-permalink="https://zerowastecalifornia.org/picsart_03-19-04-10-20/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png" data-orig-size="2237,1440" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="PicsArt_03-19-04.10.20.png" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" rel="bookmark">Some of the Top Greenwashing Buzzwords</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" title="11:55 am" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-21T11:55:34-07:00">April 21, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>Eco-friendly, Environmentally-friendly, Sustainable, Recyclable, Non-toxic, Cruelty-free, All-natural, Biodegradable. At best, these terms are vague. But even &#8220;cruelty-free&#8221; is not a regulated term. In other words,</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-5895" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/17/is-greta-thunberg-just-an-exploited-child/" rel="bookmark">
+				<img width="479" height="339" src="https://zerowastecalifornia.files.wordpress.com/2020/04/screen-shot-2020-04-16-at-5.07.08-pm.png?w=479&amp;h=339&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/screen-shot-2020-04-16-at-5.07.08-pm.png 479w, https://zerowastecalifornia.files.wordpress.com/2020/04/screen-shot-2020-04-16-at-5.07.08-pm.png?w=150&amp;h=106&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/screen-shot-2020-04-16-at-5.07.08-pm.png?w=300&amp;h=212&amp;crop=1 300w" sizes="(max-width: 479px) 100vw, 479px" data-attachment-id="6658" data-permalink="https://zerowastecalifornia.org/2020/04/17/is-greta-thunberg-just-an-exploited-child/screen-shot-2020-04-16-at-5-07-08-pm/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/screen-shot-2020-04-16-at-5.07.08-pm.png" data-orig-size="479,339" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="Screen Shot 2020-04-16 at 5.07.08 PM" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/screen-shot-2020-04-16-at-5.07.08-pm.png?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/screen-shot-2020-04-16-at-5.07.08-pm.png?w=479" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/17/is-greta-thunberg-just-an-exploited-child/" rel="bookmark">Is Greta Thunberg an exploited child?</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/17/is-greta-thunberg-just-an-exploited-child/" title="9:08 am" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-17T09:08:20-07:00">April 17, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>It&#8217;s truly astounding to see the shit being slung by some of the most powerful men on Earth toward a teenage girl. A girl who</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/17/is-greta-thunberg-just-an-exploited-child/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6617" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/10/diyvitamincpowder/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=768&amp;h=413&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6634" data-permalink="https://zerowastecalifornia.org/2020/04/10/diyvitamincpowder/picsart_04-10-03-05-39/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg" data-orig-size="2643,1982" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;1.8&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;Pixel 2 XL&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;4.459&quot;,&quot;iso&quot;:&quot;46&quot;,&quot;shutter_speed&quot;:&quot;0.0004&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="PicsArt_04-10-03.05.39" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-10-03.05.39.jpg?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/10/diyvitamincpowder/" rel="bookmark">DIY Vitamin C Powder | Zero Waste and Vegan</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/10/diyvitamincpowder/" title="3:51 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-10T15:51:44-07:00">April 10, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>Make your own vitamin C powder from dehydrated orange peels!</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/10/diyvitamincpowder/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6633" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/09/diy-oat-milk-zero-waste-vegan-affordable/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6647" data-permalink="https://zerowastecalifornia.org/2020/04/09/diy-oat-milk-zero-waste-vegan-affordable/meal-food-produce-drink-bottle-breakfast-648665-pxhere-com/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg" data-orig-size="6000,4000" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;4.2&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;NIKON D3300&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;29&quot;,&quot;iso&quot;:&quot;100&quot;,&quot;shutter_speed&quot;:&quot;0.066666666666667&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="meal-food-produce-drink-bottle-breakfast-648665-pxhere.com" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/meal-food-produce-drink-bottle-breakfast-648665-pxhere.com_.jpg?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/09/diy-oat-milk-zero-waste-vegan-affordable/" rel="bookmark">DIY Oat milk | zero waste / vegan / affordable!</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/09/diy-oat-milk-zero-waste-vegan-affordable/" title="3:47 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-09T15:47:16-07:00">April 9, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>&nbsp; Why spend $$$ on packaging and overpriced oat milk when you can make it at home for less than a quarter!  Maybe less than</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/09/diy-oat-milk-zero-waste-vegan-affordable/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6583" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/06/stocking-up-for-a-lockdown/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=768&amp;h=413&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6589" data-permalink="https://zerowastecalifornia.org/2020/04/06/stocking-up-for-a-lockdown/img_20200323_170508/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg" data-orig-size="3024,4032" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;1.8&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;Pixel 2 XL&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;1584983108&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;4.459&quot;,&quot;iso&quot;:&quot;52&quot;,&quot;shutter_speed&quot;:&quot;0.003078&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="IMG_20200323_170508" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=225" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/img_20200323_170508.jpg?w=768" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/06/stocking-up-for-a-lockdown/" rel="bookmark">Stocking up for a lockdown.</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/06/stocking-up-for-a-lockdown/" title="9:01 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-06T21:01:58-07:00">April 6, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>*Stocking up does not mean hoarding* please do not feed into panic-buying and clear out the shelves, leaving nothing for your fellow human. This has</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/06/stocking-up-for-a-lockdown/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6564" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/06/rockmandala/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6573" data-permalink="https://zerowastecalifornia.org/2020/04/06/rockmandala/fsdf/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg" data-orig-size="3467,3456" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;5.6&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;Canon EOS REBEL T3i&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;1500450361&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;45&quot;,&quot;iso&quot;:&quot;400&quot;,&quot;shutter_speed&quot;:&quot;0.016666666666667&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="fsdf" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/fsdf.jpg?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/06/rockmandala/" rel="bookmark">Paint rock mandalas</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/06/rockmandala/" title="2:12 am" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-06T02:12:17-07:00">April 6, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>Painting Mandala rocks is a great way to relieve stress, for kids and adults alike. They improve our focus, relax the soul, and are surprisingly</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/06/rockmandala/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6501" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/02/zerowastevictorygarden/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=1024&amp;h=552&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6552" data-permalink="https://zerowastecalifornia.org/2020/04/02/zerowastevictorygarden/vgarden/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png" data-orig-size="1060,670" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="vgarden" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/vgarden.png?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/02/zerowastevictorygarden/" rel="bookmark">Grow a Victory Garden!</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/02/zerowastevictorygarden/" title="4:08 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-02T16:08:24-07:00">April 2, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>We will now be on lock down for at least another month. Even though there are no food shortages, our national panic and anxiety has</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/02/zerowastevictorygarden/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+<li id="slide-6518" class="zeeslide clearfix">
+
+	<div class="slide-image clearfix">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/02/zerowastecompanionplanting/" rel="bookmark">
+				<img width="780" height="420" src="https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=780&amp;h=420&amp;crop=1" class="attachment-tortuga-slider-image size-tortuga-slider-image wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=780&amp;h=420&amp;crop=1 780w, https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=1560&amp;h=840&amp;crop=1 1560w, https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=150&amp;h=81&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=300&amp;h=162&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=768&amp;h=414&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=1024&amp;h=551&amp;crop=1 1024w" sizes="(max-width: 780px) 100vw, 780px" data-attachment-id="6550" data-permalink="https://zerowastecalifornia.org/2020/04/02/zerowastecompanionplanting/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere-com/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg" data-orig-size="3872,2592" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;5.6&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;NIKON D60&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;35&quot;,&quot;iso&quot;:&quot;800&quot;,&quot;shutter_speed&quot;:&quot;0.00025&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/plant-fruit-food-produce-vegetable-pumpkin-1076484-pxhere.com_.jpg?w=840" />			</a>
+
+		
+	</div>
+
+	<div class="slide-content clearfix">
+
+		<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/02/zerowastecompanionplanting/" rel="bookmark">Zero Waste Guide to Companion Planting</a></h2>
+		<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/02/zerowastecompanionplanting/" title="4:03 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-02T16:03:51-07:00">April 2, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		<div class="entry-content clearfix">
+
+			<p>What is companion planting? Companion planting means allowing your plants to grow next to their buddies. Plants are particular, and just like us, they have</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/02/zerowastecompanionplanting/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</div>
+
+</li>
+
+				</ul>
+
+			</div>
+
+			<div class="post-slider-controls"></div>
+
+		</div>
+
+	</div>
+
+
+	<section id="primary" class="content-archive content-area">
+		<main id="main" class="site-main" role="main">
+
+			
+				<div id="post-wrapper" class="post-wrapper clearfix">
+
+					
+<div class="post-column clearfix">
+
+	<article id="post-6729" class="post-6729 post type-post status-publish format-standard has-post-thumbnail hentry category-gardening category-grow-your-own category-recipes category-uncategorized category-zero-waste category-zero-waste-cooking category-zero-waste-diy category-zero-waste-home category-zero-waste-kitchen category-zero-waste-recipes category-zero-waste-vegan tag-feature tag-how-to-make-pineapple-beer tag-how-to-use-pineapple-rind tag-how-to-use-pineapple-skin tag-pineapple-beer-recipe tag-pineapple-brew tag-pineapple-peel tag-pineapple-rind tag-tepache tag-tepache-recipe tag-tepache-zero-waste tag-zero-waste-recipes">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" rel="bookmark">
+				<img width="600" height="280" src="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=600&amp;h=280&amp;crop=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=600&amp;h=280&amp;crop=1 600w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=1200&amp;h=560&amp;crop=1 1200w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=150&amp;h=70&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=300&amp;h=140&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=768&amp;h=359&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=1024&amp;h=478&amp;crop=1 1024w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="6755" data-permalink="https://zerowastecalifornia.org/screenshot_20200515-1513164329419753095087632/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png" data-orig-size="2048,1148" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="screenshot_20200515-1513164329419753095087632.png" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/05/screenshot_20200515-1513164329419753095087632.png?w=840" />			</a>
+
+		
+		<header class="entry-header">
+
+			<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" rel="bookmark">Tepache &#8211; Pineapple &#8220;Beer&#8221; Recipe</a></h2>
+			<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" title="3:20 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-05-15T15:20:16-07:00">May 15, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content entry-excerpt clearfix">
+
+			<p>Watch the recipe video here: What is tepache? Tepache! Pronounced teh-PAH-chay. A delicious pineapple drink that originates from Mexico and is the best way to</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/05/15/tepache-pineapple-beer-recipe/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</article>
+
+</div>
+
+<div class="post-column clearfix">
+
+	<article id="post-6737" class="post-6737 post type-post status-publish format-standard has-post-thumbnail hentry category-gardening category-grow-your-own category-plastic-free category-zero-waste-diy category-zero-waste-gardening category-zero-waste-home category-zero-waste-kids category-zero-waste-kitchen tag-feature tag-grow-pineapple-in-pot tag-grow-pineapple-in-water tag-grow-your-own tag-how-to-grow-a-pineapple tag-how-to-use-a-whole-pineapple tag-pineapple-top tag-regrow tag-regrow-pineapple tag-regrow-produce tag-zero-waste-garden tag-zero-waste-tips">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" rel="bookmark">
+				<img width="600" height="280" src="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=600&amp;h=280&amp;crop=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=600&amp;h=280&amp;crop=1 600w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=1200&amp;h=560&amp;crop=1 1200w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=150&amp;h=70&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=300&amp;h=140&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=768&amp;h=358&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=1024&amp;h=478&amp;crop=1 1024w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="6742" data-permalink="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/pineapple-643112_1920/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg" data-orig-size="1920,1280" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="pineapple-643112_1920" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/05/pineapple-643112_1920.jpg?w=840" />			</a>
+
+		
+		<header class="entry-header">
+
+			<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" rel="bookmark">Regrow Your Pineapple!</a></h2>
+			<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" title="2:48 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-05-15T14:48:07-07:00">May 15, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content entry-excerpt clearfix">
+
+			<p>Have you noticed a theme yet? We LOVE regrowing our produce whenever possible. And considering how many fruits and veggies regrow so easily, there are</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/05/15/regrow-your-pineapple/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</article>
+
+</div>
+
+<div class="post-column clearfix">
+
+	<article id="post-6708" class="post-6708 post type-post status-publish format-standard has-post-thumbnail hentry category-gardening category-grow-your-own category-recipes category-zero-waste-cooking category-zero-waste-gardening tag-amaranath tag-amaranath-companion tag-amaranth-companion tag-amaranth-companion-plant tag-amaranth-grains tag-amaranth-seeds tag-ancient-grains tag-companion-plant tag-companion-planting tag-victory-garden tag-vitamin-k tag-zero-waste-backyard tag-zero-waste-garden tag-zero-waste-gardening tag-zero-waste-home">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/30/amaranth-your-gardens-best-friend/" rel="bookmark">
+				<img width="600" height="280" src="https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=600&amp;h=280&amp;crop=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=600&amp;h=280&amp;crop=1 600w, https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=1200&amp;h=560&amp;crop=1 1200w, https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=150&amp;h=70&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=300&amp;h=140&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=768&amp;h=359&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=1024&amp;h=478&amp;crop=1 1024w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="6719" data-permalink="https://zerowastecalifornia.org/2020/04/30/amaranth-your-gardens-best-friend/am2/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png" data-orig-size="2048,2022" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="am2" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/am2.png?w=840" />			</a>
+
+		
+		<header class="entry-header">
+
+			<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/30/amaranth-your-gardens-best-friend/" rel="bookmark">Amaranth &#8211; Your Garden&#8217;s Best Friend</a></h2>
+			<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/30/amaranth-your-gardens-best-friend/" title="7:16 am" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-30T07:16:33-07:00">April 30, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content entry-excerpt clearfix">
+
+			<p>There certainly have been a lot of gardening posts lately, and with good reason! Of course growing your own food has multiple benefits. But besides</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/30/amaranth-your-gardens-best-friend/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</article>
+
+</div>
+
+<div class="post-column clearfix">
+
+	<article id="post-6681" class="post-6681 post type-post status-publish format-standard has-post-thumbnail hentry category-bulk-food category-bulk-food-store category-bulk-food-stores category-california category-uncategorized category-zero-waste-news category-zero-waste-stores tag-california-bulk-stores tag-california-zero-waste-stores tag-covid-19 tag-feature tag-new-hours tag-new-zero-waste-hours tag-shelter-in-place tag-what-stores-are-open-during-coronavirus tag-zero-waste-coronavirus tag-zero-waste-covid tag-zero-waste-covid-19 tag-zero-waste-sip tag-zero-waste-store tag-zero-waste-stores-open tag-zero-waste-supplies">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" rel="bookmark">
+				<img width="600" height="280" src="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=600&amp;h=280&amp;crop=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=600&amp;h=280&amp;crop=1 600w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=1200&amp;h=560&amp;crop=1 1200w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=150&amp;h=70&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=300&amp;h=140&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=768&amp;h=358&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=1024&amp;h=478&amp;crop=1 1024w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="6703" data-permalink="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/picsart_04-24-05-20-07/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg" data-orig-size="2643,1982" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;325195123025101&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}" data-image-title="PicsArt_04-24-05.20.07" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/picsart_04-24-05.20.07.jpg?w=840" />			</a>
+
+		
+		<header class="entry-header">
+
+			<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" rel="bookmark">COVID 19 UPDATE: Bulk, Refill and Zero Waste Store Hours, Closures, and Policies</a></h2>
+			<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" title="5:24 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-24T17:24:03-07:00">April 24, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content entry-excerpt clearfix">
+
+			<p>Posted 4/24/20 With new mandates, policies, and closings happening almost daily, it&#8217;s hard to keep track of who&#8217;s open and what their new protocols are.</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/24/covidstoresopen/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</article>
+
+</div>
+
+<div class="post-column clearfix">
+
+	<article id="post-6671" class="post-6671 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized tag-earth-day tag-earth-day-2020 tag-feature">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" rel="bookmark">
+				<img width="600" height="280" src="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=600&amp;h=280&amp;crop=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=600&amp;h=280&amp;crop=1 600w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=1200&amp;h=560&amp;crop=1 1200w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=150&amp;h=70&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=300&amp;h=140&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=768&amp;h=358&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=1024&amp;h=478&amp;crop=1 1024w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="6672" data-permalink="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/silhouette-wing-light-sky-sun-sunrise-755375-pxhere-com/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg" data-orig-size="6960,4645" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;4.5&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;NIKON D800&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;55&quot;,&quot;iso&quot;:&quot;80&quot;,&quot;shutter_speed&quot;:&quot;0.0003125&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/04/silhouette-wing-light-sky-sun-sunrise-755375-pxhere.com_.jpg?w=840" />			</a>
+
+		
+		<header class="entry-header">
+
+			<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" rel="bookmark">Earth Day Discussion Prompt for Early Elementary School Students</a></h2>
+			<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" title="12:46 pm" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-22T12:46:31-07:00">April 22, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content entry-excerpt clearfix">
+
+			<p>Earth Day Discussion Prompt for Early Elementary School Students By @LessHasteAndLessWaste I’m a teaching assistant for a kindergarten class. I was excited to create this</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/22/earth-day-discussion-prompt-for-early-elementary-school-students/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</article>
+
+</div>
+
+<div class="post-column clearfix">
+
+	<article id="post-6399" class="post-6399 post type-post status-publish format-standard has-post-thumbnail hentry category-plastic-free category-zero-waste-california tag-feature tag-greenwash tag-greenwash-products tag-greenwashing">
+
+		
+			<a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" rel="bookmark">
+				<img width="600" height="280" src="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=600&amp;h=280&amp;crop=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=600&amp;h=280&amp;crop=1 600w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=1200&amp;h=560&amp;crop=1 1200w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=150&amp;h=70&amp;crop=1 150w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=300&amp;h=140&amp;crop=1 300w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=768&amp;h=358&amp;crop=1 768w, https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=1024&amp;h=478&amp;crop=1 1024w" sizes="(max-width: 600px) 100vw, 600px" data-attachment-id="6397" data-permalink="https://zerowastecalifornia.org/picsart_03-19-04-10-20/" data-orig-file="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png" data-orig-size="2237,1440" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}" data-image-title="PicsArt_03-19-04.10.20.png" data-image-description="" data-medium-file="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=300" data-large-file="https://zerowastecalifornia.files.wordpress.com/2020/03/picsart_03-19-04.10.20.png?w=840" />			</a>
+
+		
+		<header class="entry-header">
+
+			<h2 class="entry-title"><a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" rel="bookmark">Some of the Top Greenwashing Buzzwords</a></h2>
+			<div class="entry-meta clearfix"><span class="meta-date"><a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" title="11:55 am" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-21T11:55:34-07:00">April 21, 2020</time></a></span><span class="meta-author"> <span class="author vcard"><a class="url fn n" href="https://zerowastecalifornia.org/author/zerowastecalifornia/" title="View all posts by Zero Waste California" rel="author">Zero Waste California</a></span></span></div>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content entry-excerpt clearfix">
+
+			<p>Eco-friendly, Environmentally-friendly, Sustainable, Recyclable, Non-toxic, Cruelty-free, All-natural, Biodegradable. At best, these terms are vague. But even &#8220;cruelty-free&#8221; is not a regulated term. In other words,</p></div>
+<div class="read-more"><a href="https://zerowastecalifornia.org/2020/04/21/some-of-the-top-greenwashing-buzzwords/" class="more-link">Continue reading</a></p>
+
+		</div><!-- .entry-content -->
+
+	</article>
+
+</div>
+
+				</div>
+
+				
+			<div class="post-pagination clearfix">
+				<span aria-current="page" class="page-numbers current">1</span>
+<a class="page-numbers" href="https://zerowastecalifornia.org/page/2/">2</a>
+<a class="page-numbers" href="https://zerowastecalifornia.org/page/3/">3</a>
+<span class="page-numbers dots">&hellip;</span>
+<a class="page-numbers" href="https://zerowastecalifornia.org/page/52/">52</a>
+<a class="next page-numbers" href="https://zerowastecalifornia.org/page/2/"><span class="screen-reader-text">Next Posts</span>&raquo;</a>			</div>
+
+		
+		</main><!-- #main -->
+	</section><!-- #primary -->
+
+	
+	<section id="secondary" class="sidebar widget-area clearfix" role="complementary">
+
+		<div class="widget-wrap"><aside id="search-1" class="widget widget_search clearfix"><div class="widget-header"><h3 class="widget-title">Search</h3></div>
+<form role="search" method="get" class="search-form" action="https://zerowastecalifornia.org/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field"
+			placeholder="Search &hellip;"
+			value="" name="s"
+			title="Search for:" />
+	</label>
+	<button type="submit" class="search-submit">
+		<span class="genericon-search"></span>
+		<span class="screen-reader-text">Search</span>
+	</button>
+</form>
+</aside></div>
+	</section><!-- #secondary -->
+
+
+
+	</div><!-- #content -->
+
+	
+	<div id="footer" class="footer-wrap">
+
+		<footer id="colophon" class="site-footer container clearfix" role="contentinfo">
+
+			
+			
+		<div class="site-info">
+
+			<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a>
+			
+			
+		</div><!-- .site-info -->
+
+		
+		</footer><!-- #colophon -->
+
+	</div>
+
+</div><!-- #page -->
+
+		<script type="text/javascript">
+		//<![CDATA[
+		var infiniteScroll = JSON.parse( decodeURIComponent( '%7B%22settings%22%3A%7B%22id%22%3A%22post-wrapper%22%2C%22ajaxurl%22%3A%22https%3A%5C%2F%5C%2Fzerowastecalifornia.org%5C%2F%3Finfinity%3Dscrolling%22%2C%22type%22%3A%22scroll%22%2C%22wrapper%22%3Afalse%2C%22wrapper_class%22%3A%22infinite-wrap%22%2C%22footer%22%3Atrue%2C%22click_handle%22%3A%221%22%2C%22text%22%3A%22Older%20posts%22%2C%22totop%22%3A%22Scroll%20back%20to%20top%22%2C%22currentday%22%3A%2221.04.20%22%2C%22order%22%3A%22DESC%22%2C%22scripts%22%3A%5B%5D%2C%22styles%22%3A%5B%5D%2C%22google_analytics%22%3Afalse%2C%22offset%22%3A0%2C%22history%22%3A%7B%22host%22%3A%22zerowastecalifornia.org%22%2C%22path%22%3A%22%5C%2Fpage%5C%2F%25d%5C%2F%22%2C%22use_trailing_slashes%22%3Atrue%2C%22parameters%22%3A%22%22%7D%2C%22query_args%22%3A%7B%22error%22%3A%22%22%2C%22m%22%3A%22%22%2C%22p%22%3A0%2C%22post_parent%22%3A%22%22%2C%22subpost%22%3A%22%22%2C%22subpost_id%22%3A%22%22%2C%22attachment%22%3A%22%22%2C%22attachment_id%22%3A0%2C%22name%22%3A%22%22%2C%22pagename%22%3A%22%22%2C%22page_id%22%3A0%2C%22second%22%3A%22%22%2C%22minute%22%3A%22%22%2C%22hour%22%3A%22%22%2C%22day%22%3A0%2C%22monthnum%22%3A0%2C%22year%22%3A0%2C%22w%22%3A0%2C%22category_name%22%3A%22%22%2C%22tag%22%3A%22%22%2C%22cat%22%3A%22%22%2C%22tag_id%22%3A%22%22%2C%22author%22%3A%22%22%2C%22author_name%22%3A%22%22%2C%22feed%22%3A%22%22%2C%22tb%22%3A%22%22%2C%22paged%22%3A0%2C%22meta_key%22%3A%22%22%2C%22meta_value%22%3A%22%22%2C%22preview%22%3A%22%22%2C%22s%22%3A%22%22%2C%22sentence%22%3A%22%22%2C%22title%22%3A%22%22%2C%22fields%22%3A%22%22%2C%22menu_order%22%3A%22%22%2C%22embed%22%3A%22%22%2C%22category__in%22%3A%5B%5D%2C%22category__not_in%22%3A%5B%5D%2C%22category__and%22%3A%5B%5D%2C%22post__in%22%3A%5B%5D%2C%22post__not_in%22%3A%5B%5D%2C%22post_name__in%22%3A%5B%5D%2C%22tag__in%22%3A%5B%5D%2C%22tag__not_in%22%3A%5B%5D%2C%22tag__and%22%3A%5B%5D%2C%22tag_slug__in%22%3A%5B%5D%2C%22tag_slug__and%22%3A%5B%5D%2C%22post_parent__in%22%3A%5B%5D%2C%22post_parent__not_in%22%3A%5B%5D%2C%22author__in%22%3A%5B%5D%2C%22author__not_in%22%3A%5B%5D%2C%22posts_per_page%22%3A6%2C%22ignore_sticky_posts%22%3Afalse%2C%22suppress_filters%22%3Afalse%2C%22cache_results%22%3Afalse%2C%22update_post_term_cache%22%3Atrue%2C%22lazy_load_term_meta%22%3Atrue%2C%22update_post_meta_cache%22%3Atrue%2C%22post_type%22%3A%22%22%2C%22nopaging%22%3Afalse%2C%22comments_per_page%22%3A%2250%22%2C%22no_found_rows%22%3Afalse%2C%22order%22%3A%22DESC%22%7D%2C%22last_post_date%22%3A%222020-04-21%2011%3A55%3A34%22%2C%22stats%22%3A%22blog%3D131016930%26v%3Dwpcom%26tz%3D-7%26user_id%3D0%26subd%3Dzerowastecalifornia%26x_pagetype%3Dinfinite%22%7D%7D' ) );
+		//]]>
+		</script>
+		<!--  -->
+<script src='//0.gravatar.com/js/gprofiles.js?ver=202021y'></script>
+<script>
+var WPGroHo = {"my_hash":""};
+</script>
+<script type='text/javascript' src='https://s1.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1380573781h'></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+
+			if (typeof Gravatar === "undefined"){
+				return;
+			}
+
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	</div>
+<script>
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/zerowastecalifornia.wordpress.com\/public.api\/connect\/?action=request&domain=zerowastecalifornia.org","logoutURL":"https:\/\/zerowastecalifornia.wordpress.com\/wp-login.php?action=logout&_wpnonce=f3385a3703","homeURL":"https:\/\/zerowastecalifornia.org\/","postID":"6729","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+</script>
+<script type='text/javascript' src='https://s0.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1573483029j'></script>
+		<div id="infinite-footer">
+			<div class="container">
+				<div class="blog-info">
+					<a id="infinity-blog-title" href="https://zerowastecalifornia.org/" rel="home">
+						Zero Waste California					</a>
+				</div>
+				<div class="blog-credits">
+					<a href="https://wordpress.com/?ref=footer_blog" rel="nofollow">Blog at WordPress.com.</a> 				</div>
+			</div>
+		</div><!-- #infinite-footer -->
+		
+	<div id="carousel-reblog-box">
+		<form action="#" name="carousel-reblog">
+			<textarea id="carousel-reblog-content" name="carousel-reblog-content" placeholder="Add your thoughts here... (optional)"></textarea>
+			<label for="carousel-reblog-to-blog-id" id="carousel-reblog-lblogid">Post to</label>
+			<select name="carousel-reblog-to-blog-id" id="carousel-reblog-to-blog-id">
+						</select>
+
+			<div class="submit">
+				<span class="canceltext"><a href="#" class="cancel">Cancel</a></span>
+				<input type="submit" name="carousel-reblog-submit" class="button" id="carousel-reblog-submit" value="Reblog Post" />
+				<input type="hidden" id="carousel-reblog-blog-id" value="131016930" />
+				<input type="hidden" id="carousel-reblog-blog-url" value="https://zerowastecalifornia.org" />
+				<input type="hidden" id="carousel-reblog-blog-title" value="Zero Waste California" />
+				<input type="hidden" id="carousel-reblog-post-url" value="" />
+				<input type="hidden" id="carousel-reblog-post-title" value="" />
+			</div>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="bfb84fae02" /><input type="hidden" name="_wp_http_referer" value="/" />		</form>
+
+		<div class="arrow"></div>
+	</div>
+<link rel='stylesheet' id='all-css-0-3' href='https://s1.wp.com/_static/??/wp-content/mu-plugins/carousel/jetpack-carousel.css,/wp-content/mu-plugins/tiled-gallery/tiled-gallery.css?m=1563361695j&cssminify=yes' type='text/css' media='all' />
+<script>
+var actionbardata = {"siteID":"131016930","siteName":"Zero Waste California","siteURL":"https:\/\/zerowastecalifornia.org","icon":"<img alt='' src='https:\/\/zerowastecalifornia.files.wordpress.com\/2017\/06\/cropped-whtw-opengraph-img-1.png?w=50' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"premium\/tortuga","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fzerowastecalifornia.org%2F2020%2F05%2F15%2Ftepache-pineapple-beer-recipe%2F&signup_flow=account&domain=zerowastecalifornia.org","themeURL":"","xhrURL":"https:\/\/zerowastecalifornia.org\/wp-admin\/admin-ajax.php","nonce":"b4a28df927","isSingular":"","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"be1e8762d4\" \/>","referer":"https:\/\/zerowastecalifornia.org\/","canFollow":"1","feedID":"69032789","statusMessage":"","customizeLink":"https:\/\/zerowastecalifornia.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fzerowastecalifornia.wordpress.com%2F","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Tortuga","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/read\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 836 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/wordpress.com\/log-in?redirect_to=https%3A%2F%2Fzerowastecalifornia.org%2F2020%2F05%2F15%2Ftepache-pineapple-beer-recipe%2F&signup_flow=account&domain=zerowastecalifornia.org\">Log in now.<\/a>","stats":"Stats"}};
+</script>
+<script>
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/zerowastecalifornia.org\/wp-admin\/admin-ajax.php","nonce":"568eb79081","display_exif":"1","display_comments":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","copyright":"Copyright","comment_registration":"0","require_name_email":"1","login_url":"https:\/\/zerowastecalifornia.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fzerowastecalifornia.org%2F2020%2F05%2F15%2Ftepache-pineapple-beer-recipe%2F","blog_id":"131016930","meta_data":["camera","aperture","shutter_speed","focal_length","copyright"],"local_comments_commenting_as":"<fieldset><label for=\"email\">Email (Required)<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name (Required)<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>","reblog":"Reblog","reblogged":"Reblogged","reblog_add_thoughts":"Add your thoughts here... (optional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=131016930&v=wpcom&tz=-7&user_id=0&subd=zerowastecalifornia","is_public":"1","reblog_enabled":""};
+</script>
+<script type='text/javascript' src='https://s1.wp.com/_static/??-eJylUltywyAMvFAxYZJOnI9Oz4JBduVgYJBsx7cvceNM+oinbf5WrxW7SI5RmOAZPMuWpIUBDcRT0dKTvCl1vYiub9CTRF+jR56uYOlFb1xvgWYeJJYDeBvSuRSDm2p0rujQf6VeeOveOUHIIMAio28uG6VSm+12t1Wl9DBS1OYoKhfM8bIl49waiOkjLQaE8d6Sps9hBanJlQSyLFSxEWM0oZNVj85KVKXPyix8s+DXFDZ0IoG204M8WqlHKYCMjiDeuHPrTP813+gUegK3Yv3N6Wib/19UOslOE0PKSIQBUsLz2Vxzf2TglF9Fa0OGMfjz0BWtdC+SZAs8610SP905jXWoWjB8z9ghSwtSEwHPA3McE9DagxkdWNFo5yBNn6M89dq9qOfycDjsd3vVvgPmQGIX'></script>
+<script type='text/javascript'>
+( 'fetch' in window ) || document.write( '<script src="https://s0.wp.com/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?m=1573572739h&#038;ver=3.0.0"></scr' + 'ipt>' );( document.contains ) || document.write( '<script src="https://s1.wp.com/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?m=1540208548h&#038;ver=3.42.0"></scr' + 'ipt>' );( window.DOMRect ) || document.write( '<script src="https://s0.wp.com/wp-includes/js/dist/vendor/wp-polyfill-dom-rect.min.js?m=1585663916h&#038;ver=3.42.0"></scr' + 'ipt>' );( window.URL && window.URL.prototype && window.URLSearchParams ) || document.write( '<script src="https://s2.wp.com/wp-includes/js/dist/vendor/wp-polyfill-url.min.js?m=1585663916h&#038;ver=3.6.4"></scr' + 'ipt>' );( window.FormData && window.FormData.prototype.keys ) || document.write( '<script src="https://s1.wp.com/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?m=1550600082h&#038;ver=3.0.12"></scr' + 'ipt>' );( Element.prototype.matches && Element.prototype.closest ) || document.write( '<script src="https://s2.wp.com/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?m=1540208548h&#038;ver=2.0.2"></scr' + 'ipt>' );
+( window.URL && window.URL.prototype && window.URLSearchParams ) || document.write( '<script src="https://s2.wp.com/wp-content/plugins/gutenberg-core/8.1.0-wpcom/vendor/wp-polyfill-url.min.7490158b.js?m=1589993648h&#038;ver=3.6.4"></scr' + 'ipt>' );
+( window.DOMRect ) || document.write( '<script src="https://s1.wp.com/wp-content/plugins/gutenberg-core/8.1.0-wpcom/vendor/wp-polyfill-dom-rect.7e21c103.js?m=1589993648h&#038;ver=3.42.0"></scr' + 'ipt>' );
+</script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script type="text/javascript">
+			jQuery.extend( infiniteScroll.settings.scripts, ["jquery-core","jquery-migrate","jquery","postmessage","mobile-useragent-info","tortuga-jquery-navigation","flexslider","tortuga-post-slider","spin","jquery.spin","grofiles-cards","wpgroho","jquery.autoresize","highlander-comments","devicepx","the-neverending-homepage","wp-polyfill","blog-posts-block-view","wp-i18n","wp-dom-ready","wp-a11y","wp-escape-html","carousel-block-view","wpcom-masterbar-js","wpcom-masterbar-tracks-js","wpcom-actionbar-bar","jetpack-carousel","swfobject","videopress","tiled-gallery"] );
+			jQuery.extend( infiniteScroll.settings.styles, ["wpcom-smileys","the-neverending-homepage","wp-block-library","jetpack-layout-grid","jetpack-ratings","blog-posts-block-view","carousel-block-view","premium-content-container-block","coblocks-frontend","posts-list-block-style","wpcom-core-compat-playlist-styles","wpcom-bbpress2-staff-css","wpcom-layout-grid-front","tortuga-stylesheet","genericons","tortuga-flexslider","jetpack-social-menu","geo-location-flair","reblogging","wpcom-actionbar-bar","h4-global","tortuga-default-fonts","jetpack-global-styles-frontend-style","highlander-comments","highlander-comments-ie7","jetpack-carousel","tiled-gallery"] );
+		</script><script src="//stats.wp.com/w.js?61" type="text/javascript" async defer></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'131016930','blog_tz':'-7','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'131016930','v':'wpcom','tz':'-7','user_id':'0','subd':'zerowastecalifornia'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1dzWkZHMElNcXlRRzFBQVtTMHZXfj81LT9oZCw9NSs/Y2h0fHAyVkxaeWhCZi13QURvR0FkLjVxfE5XcW5VZCwwMmp3b2ElTTlJckFGLywwRmpGRm5FRXhGU3ZFQ0YwRVtuS3VfbyxuLF82VmdpaD0yUT0tT1JtSko9LHpXLTY4JS5LT21PZm9VJVE3OTU0VVM9R2NbTWpEcG1SbnAlQ1dhLV1QaHVJbg=='}]);
+_stq.push([ 'clickTrackerInit', '131016930', '0' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+</body>
+</html>

@@ -15,7 +15,7 @@ SPIDER_MODULES = ['zerowaste.spiders']
 NEWSPIDER_MODULE = 'zerowaste.spiders'
 
 # set maximum depth limit for crawling the site (0 is no limit) 
-DEPTH_LIMIT = 5
+DEPTH_LIMIT = 10
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'zerowaste (+http://www.yourdomain.com)'

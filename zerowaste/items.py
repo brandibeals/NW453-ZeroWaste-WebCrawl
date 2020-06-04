@@ -11,9 +11,9 @@ import scrapy
 class ZerowasteItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    code = scrapy.Field()
+    #code = scrapy.Field()
     url = scrapy.Field() 
     title = scrapy.Field()
     body = scrapy.Field()
-    links = scrapy.Field()
+    #links = scrapy.Field()
     #pass

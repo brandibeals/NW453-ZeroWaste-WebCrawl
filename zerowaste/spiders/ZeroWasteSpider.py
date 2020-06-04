@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 Author: Brandi Beals
-Description: Assignment 1 Spider
+Description: Assignment 3 Spider
 """
 
 import scrapy
 import os.path
 import string
 import re
+#from langdetect import detect
 from zerowaste.items import ZerowasteItem
 
 class ZeroWasteSpider(scrapy.Spider):
@@ -22,7 +23,8 @@ class ZeroWasteSpider(scrapy.Spider):
             'https://www.goingzerowaste.com/blog-posts-for-beginners',
             'https://www.reddit.com/r/ZeroWaste/',
             'https://zerowastehome.com/blog/',
-            'https://zerowaste.com/'
+            'https://zerowaste.com/',
+            'https://www.recology.com/environment-innovation/waste-zero/'
         ]
         
         for url in urls:
@@ -31,7 +33,6 @@ class ZeroWasteSpider(scrapy.Spider):
     def parse(self, response):
         re_punc = re.compile('[%s]' % re.escape(string.punctuation))
         re_ws = re.compile(r"\s+", re.MULTILINE)
-        #code = 
         url = response.url
         titleraw = response.css('title::text').get()
         title = re_punc.sub('', titleraw)
@@ -42,7 +43,8 @@ class ZeroWasteSpider(scrapy.Spider):
         
         # store html in directory
         page_dirname = 'html'
-        filename = '%s.html' % title
+        #filename = '%s.html' % title
+        filename = '%s.html' % re_punc.sub('', url)
         with open(os.path.join(page_dirname,filename), 'wb') as f:
             f.write(bodyraw)
         self.log('Saved file %s' % filename)
@@ -53,7 +55,17 @@ class ZeroWasteSpider(scrapy.Spider):
         #yield from response.follow_all(css='li.next a::attr(href)', callback=self.parse)
         for link in response.css('a::attr(href)'):
             url = response.urljoin(link.extract())
-            yield scrapy.Request(url, callback=self.parse_link)
+            title = response.css('title::text').get()
+            # limit to pages where title is English
+#            if detect(title) != 'en':
+#                print(detect(title))
+#                continue
+            # limit to pages with content
+            if len(response.body) < 300:
+                continue
+            # limit urls to those with certain keywords
+            if re.search(r'(waste)|(sustain)|(refus)|(recycl)|(reduc)|(reus)|(rot)|(compost)|(package)|(free)|(zero)|(carbon)|(environment)|(trash)', url, re.I):
+                yield scrapy.Request(url, callback=self.parse_link)
         
         # return item details
         item = ZerowasteItem()
@@ -66,7 +78,6 @@ class ZeroWasteSpider(scrapy.Spider):
     def parse_link(self, response):
         re_punc = re.compile('[%s]' % re.escape(string.punctuation))
         re_ws = re.compile(r"\s+", re.MULTILINE)
-        code = response.xpath('//td[@id="item_id"]/text()').re(r'ID: (\d+)')
         url = response.url
         titleraw = response.css('title::text').get()
         title = re_punc.sub('', titleraw)
@@ -77,14 +88,14 @@ class ZeroWasteSpider(scrapy.Spider):
         
         # store html in directory
         page_dirname = 'html'
-        filename = '%s.html' % title
+        #filename = '%s.html' % title
+        filename = '%s.html' % re_punc.sub('', url)
         with open(os.path.join(page_dirname,filename), 'wb') as f:
             f.write(bodyraw)
         self.log('Saved file %s' % filename)
 
         # return item details
         item = ZerowasteItem()
-        item['code'] = code
         item['url'] = url
         item['title'] = title
         item['body'] = body

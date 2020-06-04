@@ -1,0 +1,739 @@
+
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Recology Bill Pay - Pay Your Bill Online</title>
+	<meta name="description" content="Pay for Recology services with online bill pay. Login or create an account to schedule automatic payments, or submit a one-time payment.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" sizes="16x16" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/images/favicons/favicon-16x16.png">
+	<link rel="shortcut icon" sizes="32x32" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/images/favicons/favicon-32x32.png">
+	<link rel="shortcut icon" sizes="48x48" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/images/favicons/favicon-64x64.png">
+	<link rel="shortcut icon" sizes="144x144" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/images/favicons/favicon-144x144.png">
+    <link rel="apple-touch-icon" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/images/favicons/favicon-144x144.png">
+    
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700,700i" rel="stylesheet">
+    
+	<link rel="stylesheet" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/css/content.css">
+	<link rel="stylesheet" href="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/css/main.css?a=2">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+	<script src="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-WHWLF49');</script>
+	<!-- End Google Tag Manager -->
+	
+	<!-- start accordion -->
+	<script src="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/js/libs/jquery.js"></script>
+	<!-- end accordion -->
+		<script>
+		var siteArray = [
+			["Recology American Canyon", "VALL", "11", "recology-american-canyon", "707-731-6526"],
+			["Recology Arcata", "CITY", "45", "recology-arcata", "707-298-2935"],
+			["Recology Auburn Placer", "AUBU", "15", "recology-auburn-placer", "530-488-1023"],
+			["Recology Butte Colusa", "BUTT", "13", "recology-butte-colusa", "530-764-2102"],
+			["Recology Davis", "https://www.online-billpay.com/Default.aspx", "71", "recology-davis", ""],
+			["Recology Del Norte", "DELN", "17", "recology-del-norte", "707-430-9466"],
+			["Recology Dixon", "DIXO", "12", "recology-dixon", "707-635-9041"],
+			["Recology Eel River", "CITY", "62", "recology-eel-river", "707-298-2935"],
+			["Recology Humboldt County", "CITY", "16", "recology-humboldt-county", "707-298-2935"],
+			["Recology Mariposa", "MARP", "66", "recology-mariposa", "209-226-4157"],
+			["Recology Mountain View", "https://www.mountainview.gov/depts/fasd/revenue/utilities/pay.asp", "5", "recology-mountain-view", ""],
+			["Recology of the Coast", "ROTC", "8", "recology-of-the-coast", "650-451-0185"],
+			["Recology San Benito County", "SOUT", "29", "recology-san-benito-county", "669-205-9189"],
+			["Recology San Bruno", "https://www.onlinebiller.com/sanbruno/index.html", "26", "recology-san-bruno", ""],
+			["Recology San Francisco", "SUNS", "25", "recology-san-francisco", "415-330-1300"],
+			["Recology San Mateo County", "SANM", "7", "recology-san-mateo-county", "650-620-1001"],
+			["Recology Sonoma Marin", "SONO", "46", "recology-sonoma-marin", "707-341-0107"],
+			["Recology South Bay", "LOSA", "4", "recology-south-bay", "408-418-5288"],
+			["Recology South Valley", "SOUT", "6", "recology-south-valley", "669-205-9189"],
+			["Recology Vacaville Solano", "VACA", "9", "recology-vacaville-solano", "707-305-1275"],
+			["Recology Vallejo", "VALL", "10", "recology-vallejo", "707-731-6526"],
+			["Recology Yuba Sutter", "YUBA", "14", "recology-yuba-sutter", "530-443-9246"],
+			["Recology Ashland", "ASHL", "18", "recology-ashland", "541-625-0123"],
+			["Recology Portland", "RPOR", "19", "recology-portland", "971-256-3634"],
+			["Recology Western Oregon", "RWOW", "20", "recology-western-oregon", "971-312-0178"],
+			["Recology CleanScapes", "https://web.afts.com/aftsserver/welcome.wp?siteid=121", "21", "recology-cleanscapes", ""],
+			["Recology Sunset Scavenger", "SUNS", "2", "recology-san-francisco", "415-330-1300", [["Pay My Bill", "recology-san-francisco", "/recology-san-francisco/pay-my-bill/"], ["Contact Us", "recology-san-francisco", "/recology-san-francisco/contact/"], ]],["Recology Golden Gate", "GOLD", "1", "recology-san-francisco", "415-330-1300", [["Pay My Bill", "recology-san-francisco", "/recology-san-francisco/pay-my-bill/"], ["Contact Us", "recology-san-francisco", "/recology-san-francisco/contact/"], ]],["Recology South Bay", "LOSA", "4a", "recology-south-bay", "408-418-5288", [["Pay My Bill", "recology-south-bay", "/recology-south-bay/city-of-santa-clara/pay-my-bill/"], ["Contact Us", "recology-south-bay", "/recology-south-bay/city-of-santa-clara/contact/"], ]],["Recology South Bay", "STEV", "4b", "recology-south-bay", "408-418-5288", [["Pay My Bill", "recology-south-bay", "/recology-south-bay/city-of-santa-clara/pay-my-bill/"], ["Contact Us", "recology-south-bay", "/recology-south-bay/city-of-santa-clara/contact/"], ]]		
+		];
+
+		//console.log(siteArray);
+	</script>
+</head>
+<body>
+    <!-- Hello Git -->
+	<!--[if lt IE 8]> <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
+	<nav class="navbar navbar-default" role="navigation">
+		<a href="/"><img id="logo" src="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/images/logo.png" data-src-778px="https://www.recology.com/wp-content/themes/recology/microsites/bill-pay/images/logo-mobile.png"></a>
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul id="utility-nav">
+					<li><a href="/">Recology Home</a></li>
+					<!-- <li><a href="/contact" id="nav_contact">Contact</a></li> -->
+					<li><a href="/online-bill-pay-faqs/">FAQ</a></li>
+					<li><a href="/work-at-recology/">Careers</a></li>
+				</ul>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</nav>
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Recology Bill Pay</h1><br />
+			<h2>
+                Select Your Local Recology from the drop down menu below<br> to learn more about Recology Bill Pay.
+			</h2>
+			<br/>
+			<div class="col-md-6 company-select-container">
+				<label class="hidden">Select Your Recology Company To Get Started</label>
+				<select id="company_select" class="transparent-input" name="company_select" onchange="coSelectChangeEvent();" autofocus>
+					<option value="">Choose Your Local Recology</option>
+					<optgroup label="CALIFORNIA">
+						<option value="11">Recology American Canyon</option>
+						<option value="45">Recology Arcata</option>
+						<option value="15">Recology Auburn Placer</option>
+						<option value="13">Recology Butte Colusa</option>
+						<option value="71">Recology Davis</option>
+						<option value="17">Recology Del Norte</option>
+						<option value="12">Recology Dixon</option>
+						<option value="62">Recology Eel River</option>
+						<option value="16">Recology Humboldt County</option>
+						<option value="66">Recology Mariposa</option>
+						<option value="5">Recology Mountain View</option>
+						<option value="8">Recology of the Coast</option>
+						<option value="29">Recology San Benito County</option>
+						<option value="26">Recology San Bruno</option>
+						<optgroup label="&nbsp;&nbsp;&nbsp; Recology San Francisco">
+						<option value="2" >&nbsp;&nbsp;&nbsp;&nbsp; Recology Sunset Scavenger</option>
+						<option value="1" >&nbsp;&nbsp;&nbsp;&nbsp; Recology Golden Gate</option>
+						<option value="7">Recology San Mateo County</option>
+						<option value="46">Recology Sonoma Marin</option>
+						<optgroup label="&nbsp;&nbsp;&nbsp; Recology South Bay">
+						<option value="4a" >&nbsp;&nbsp;&nbsp;&nbsp; Cupertino</option>
+						<option value="4b" >&nbsp;&nbsp;&nbsp;&nbsp; Santa Clara</option>
+						<option value="6">Recology South Valley</option>
+						<option value="9">Recology Vacaville Solano</option>
+						<option value="10">Recology Vallejo</option>
+						<option value="14">Recology Yuba Sutter</option>
+						<optgroup label="OREGON">
+						<option value="18">Recology Ashland</option>
+						<option value="19">Recology Portland</option>
+						<option value="20">Recology Western Oregon</option>
+						<optgroup label="WASHINGTON">
+						<option value="21">Recology CleanScapes</option>
+										</select>
+			</div>
+		</div>
+	</div>
+	<div id="epay-section"></div>
+	<div class="container">
+		<div class="row" id="epay_container">
+			<p id="site_name"></p>
+			
+      <!-- debris box button for Sonoma Marin -->
+			<div class="col-md-4 col-sm-6 col-xs-6 button-container" id="debris_box_button">
+				<a id="debris_box_payment_url" href="https://online-billpay.com/recology/payment.aspx" target="_blank"><div class="bubble-button two-line-button">Debris Box Customers</div></a>
+			</div>
+			<div id="login-pay-bill-button" class="col-md-4 col-sm-6 col-xs-6 button-container"><!-- <span class="button-icon fa fa-sign-in" aria-hidden="true"></span> <span class="bubble-button fa fa-pencil-square-o" aria-hidden="true"></span> <div class="bubble-button fa fa-money" aria-hidden="true"></div> -->
+				<a id="login_url" href="" target="_blank"><div class="bubble-button"><span id="epay_button_text">Login</span></div></a>
+			</div>
+			
+			<div id="epay_optional_links">
+				<div class="col-md-4 col-sm-6 col-xs-6 button-container">
+					<a id="enrollment_url" href="" target="_blank"><div class="bubble-button">Enroll</div></a>
+				</div>
+				<div class="col-md-4 col-sm-6 col-xs-6 button-container">
+					<a id="onetime_payment_url" href="" target="_blank"><div class="bubble-button two-line-button">One-time Payment</div></a>
+				</div>
+				<span class="mobile-only-button">
+					<div id="pay-by-phone-button" class="col-md-4 col-sm-6 col-xs-6 button-container">
+						<a id="pay-by-phone_url" href=""><div class="bubble-button two-line-button">Pay By<br> Phone</div></a>
+					</div>
+				</span>
+			</div>
+			
+		</div>
+		<div id="pay-by-phone-container" class="row desktop-only-text">
+			<p class="col-xs-12" id="pay_by_phone_available"></p>
+		</div>
+	</div>
+	<!--  san francisco question -->
+		<div class="container-fluid color-block-container">
+		<div class="container color-block">
+			<div id="bill-pay-page-content" class="main-style-content"></div>
+			
+			<p id="epay_links">
+				Still have questions? <a id="contact_url" href="" target="_blank">Contact Us</a> 
+			</p>
+		</div>
+	</div>
+	<div class="container-fluid color-block-container-green">
+		<div class="container">
+			<div id="default-bill-pay-page-content" class="main-style-content">
+				<h3>Online Bill Pay</h3>
+Recology customers may pay their bill online by logging into their existing account, creating a new user account, or as a one-time user with no account required. Once logged in, you can make payments, set up automatic payments, view payment history, and add customer and payment accounts. Payments can be made from your bank account or from your credit card.
+
+<img class="aligncenter size-full wp-image-37227" src="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/uploads/2018/02/billpay_truck_flowers-1.png" alt="" width="100%" />			 </div>
+		</div>
+	</div>
+	<div class="container-fluid color-block-container">
+		<div class="container color-block">
+			<div id="online-bill-pay-faqs" class="main-style-content">
+				<h3>Online Bill Pay FAQs</h3>
+<h3 style="text-align: left;">General</h3>
+<table class="page-faq-content_questions" style="text-align: left; width: 100%;">
+<tbody>
+<tr>
+<td>
+<div class="question-item js-accord-container active">
+<div class="question-item-link js-accord-link"><span class="content">How can I pay my Recology bill online?</span></div>
+<div class="question-item-block js-accord-block" style="display: block;">
+<div class="question-item-block_inner">
+
+Once you've enrolled in and logged into your account, you can make payments, view payment history, add customer and payment accounts, and correspond with our customer service department by e-mail. Payments can be made from your bank account or from your credit card.
+
+You do not have to register for an account to make a one-time payment. To start, <a href="/bill-pay">click here</a> or go to <a href="https://billpay.recology.com"><u>billpay.recology.com</u></a>.
+<br class="a" /><br class="a" />Watch the <span style="text-decoration: underline;"><a href="https://youtu.be/exZxdDNlPCM">video</a></span> for steps to enroll, pay, or set up automatic payments.
+<br class="a" /><br class="a" /><iframe src="https://www.youtube.com/embed/exZxdDNlPCM" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">Is Recology online bill pay a free service?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Yes! There are no fees for online payments.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">Can I log on from outside the U.S.?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Yes!
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+
+<hr />
+
+<h3 style="text-align: left;">Create an Account &amp; Enroll</h3>
+<table class="page-faq-content_questions alignleft" style="text-align: left; width: 100%;">
+<tbody>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I create my online account and submit a payment?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+To speed your enrollment, have your paper bill, banking and/or credit card information, and an email address available. You will be asked to create a User ID and password. All user IDs and passwords are CASE SENSITIVE. To set your password, you'll be asked to use a combination of letters (lower and upper case) and numbers for security.
+
+&nbsp;
+
+<span style="color: #ffffff;"><span style="text-decoration: underline;"><a style="color: #ffffff; text-decoration: underline;" href="https://youtu.be/exZxdDNlPCM" target="_blank" rel="noopener">Watch the video</a></span> to help</span> you enroll, pay online, or set up automatic payments.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">If the session times out before I am done with enrollment, do I have to start all over?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Yes. For your security, Recology automatically signs you out of a session if you are inactive for 20 minutes.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">When will my new user ID and password be activated?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Your user ID and password are active immediately following enrollment.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I enroll in online billing for multiple customer accounts?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Once you've logged in, click "My Profile" in the top navigation menu, and then click "My Accounts." From there you will be able to add and manage accounts in this tab.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">Will I continue to receive a paper bill in the mail?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+No. Once you've enrolled in Recology online billing, we will send you an email notification when a bill is available to be paid through the website.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I cancel Recology online bill pay enrollment?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+When viewing the login screen, there is an option under the login button to "deactivate your profile."  If you have trouble deactivating your account, you may contact customer service via the navigation menu at the top of the page.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I change my bank and/or credit card account information?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Once logged in, click "My Payment Accounts" on the homepage. You can then edit your information within existing payment accounts, add a new account, or delete an account.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I change my name, phone number, or email address?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Once logged in, you may change your name, phone number, or email address, by visiting "My Profile" in the top navigation menu.
+
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+<h3 style="text-align: left;"></h3>
+
+<hr />
+
+<h3 style="text-align: left;">Security</h3>
+<table class="page-faq-content_questions alignleft" style="text-align: left; width: 100%;">
+<tbody>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How is my personal and financial information kept safe?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+E-BillPay uses several methods to ensure that your information is secure:
+<ul class="list-main">
+ 	<li>User ID and Password: Your user ID and password are unique identifiers that only you know. As long as you don't share your user name and password with anyone, no one can view your bills or personal information.</li>
+ 	<li>SSL: Recology uses SSL (secure socket layers), which ensures that your connection and information are secure from outside inspection.</li>
+ 	<li>Encryption: Recology uses 128-bit encryption to make your information unreadable as it passes over the Internet.</li>
+ 	<li>Au<span style="font-family: inherit; font-size: inherit;">tomatic Sign Out: Recology automatically signs you out of a session if you are inactive for 20 minutes.</span></li>
+</ul>
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">What if I forget my User ID or Password?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+User ID: If you forget your user ID, please call our customer service department.
+
+Password: If you forget your password, go to the Log-On page and click "Forgot password?" Enter your user ID and your password will be emailed to the email address you provided during enrollment.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I change my password?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">Passwords may be changed from the initial login page prior to logging on by choosing "Forgot your User ID/Password?" If you are logged in to E-BillPay, you may choose "Profile," and then "Change Password."</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+
+<hr />
+
+<h3 style="text-align: left;">Payment Options</h3>
+<table class="page-faq-content_questions alignleft" style="text-align: left; width: 100%;">
+<tbody>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">What types of payment source are accepted?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Bank Accounts: Checking and Savings accounts
+
+Credit Card Accounts: MasterCard and Visa
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I make a single, independent payment?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Once logged in, you will see a summary of your current bills on the homepage. You can then click "View" to see the details of each bill, or you can simply click "Pay." Select the amount you want to pay, the date you want payment to occur, the payment account from which to pay, and you're done.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I set up a regularly scheduled, automatic payment?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Once logged in, click "Payments," and then choose "Add/View Recurring Payments." Once a recurring payment is set up, payments will automatically be made from the account specified.
+
+&nbsp;
+
+<span style="color: #ffffff;"><a style="color: #ffffff;" href="https://youtu.be/exZxdDNlPCM" target="_blank" rel="noopener"><span style="text-decoration: underline;">Watch the video</span></a> to help</span> set up automatic payments.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">Can I setup more than one automatic payment?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+You can set up one recurring payment for each customer account you add to online bill pay.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">When will my payment be processed?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+<strong>For Payments Made From Bank Accounts:</strong>
+Once logged in, you can initiate the online payment process by selecting a payment date. This is the date your payment process will begin.
+
+For your convenience, Recology will alert you to the next available day you may make a payment, "Same Day" payments can only be made before 1pm Eastern Time on business days. If you try to schedule a payment for "today" but it is after 1pm Eastern Time or on a non-business day, Recology will alert you to schedule your payment for the next available business day.
+
+E-BillPay will routinely credit your customer account on the business day following the payment date (see the chart below for a complete schedule).
+
+Your payment may be withdrawn from your bank account on or after your payment date.
+
+Please initiate payments to allow sufficient processing time before your payment due date.
+
+<strong>For Payments Made From Credit Cards:</strong>
+A credit card payment is a "real-time" transaction, meaning that the payment process will begin immediately after you enter your card number and click "submit."
+
+A credit card payment must be made on or before the due date shown on your bill.
+
+A credit card payment initiated before 8pm Eastern Time on a business day will be credited to your customer account on the following business day.
+
+A credit card payment made after 8pm Eastern Time or on a weekend or holiday will be credited to your customer account within two business days. Please initiate payments to allow sufficient processing time before your payment due date.
+
+<strong>Timing of Bank Account Payments:</strong>
+<table border="1" width="100%" cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<td><b>If you schedule your Bank Account
+payment for...</b></td>
+<td><b>E-BillPay will credit your customer
+account on...</b></td>
+</tr>
+<tr>
+<td>Monday</td>
+<td>Tuesday</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>Wednesday</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>Thursday</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>Friday</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>The following Monday</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>N/A see note below</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>N/A see note below</td>
+</tr>
+</tbody>
+</table>
+If you try to schedule a bank account payment after 1 pm Eastern Time or on a non- business day, E-BillPay will alert you to schedule your payment for the next available business day.
+
+<strong>Timing of Credit Card Payments:</strong>
+<table border="1" width="100%" cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<td><b>If you schedule your Bank Account payment for...</b></td>
+<td><b>E-BillPay will credit your customer account on...</b></td>
+</tr>
+<tr>
+<td>Monday</td>
+<td>Tuesday</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>Wednesday</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>Thursday</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>Friday</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>The following Monday</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>The following Tuesday</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>The following Tuesday</td>
+</tr>
+</tbody>
+</table>
+<ul>
+ 	<li></li>
+ 	<li><strong>Holidays (Based on the Federal Reserve calendar):</strong>
+New Year's Day</li>
+ 	<li>Birthday of Martin Luther King Jr.</li>
+ 	<li>Washington's Birthday</li>
+ 	<li>Memorial Day</li>
+ 	<li>Independence Day</li>
+ 	<li>Labor Day</li>
+ 	<li>Columbus Day</li>
+ 	<li>Veterans Day</li>
+ 	<li>Thanksgiving Day</li>
+ 	<li>Christmas Day</li>
+</ul>
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How can I confirm if my payment has been processed?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">You may confirm payments by logging in, and clicking on "Payments" in the main navigation bar, and then "View Payment History."  You can view whether your payment is approved, scheduled, pending, or rejected.</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">How do I know which payments I've scheduled or completed?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+Before the scheduled payment date, your history page will show the payment as "Scheduled." When the scheduled payment is submitted to the payment processor your history page will show the payment as "Pending." After the response is received, your history page will show the payment as "Approved" or "Rejected."
+
+Recology will display payment history for up to 6 months.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">Can I pay my balance in full or extend the payment due date?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">
+
+You can pay your balance in full at any time from your bank or credit card account.
+
+You may not extend the payment due date.
+
+Helpful Hint: Always schedule your payments to occur no later than your due date.
+
+NOTE: Payment is due on the same date as paper bills.
+
+</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">Can I cancel a scheduled payment?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">You may cancel a payment as long as its Payment Status is "Scheduled." Payments whose status is "Pending" or "Approved" cannot be cancelled.</div>
+</div>
+</div></td>
+</tr>
+<tr>
+<td>
+<div class="question-item js-accord-container">
+<div class="question-item-link js-accord-link">What if I want to change or cancel my automatic, recurring payment arrangement?</div>
+<div class="question-item-block js-accord-block">
+<div class="question-item-block_inner">Once logged in, click the “Payments” menu, then choose “Add/View Recurring Payments” and then "Edit" to change payment information. Click "Delete" to cancel all future automatic payments.</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+&nbsp;			 </div>
+		</div>
+	</div>
+	<div id="footer-container" class="container-fluid">
+		<footer id="footer" class="container">
+			<ul class="footer-section footer-left col-md-4">
+				<li><a class="footer-link" href="/terms/">Terms of Use</a></li>
+				<li><a class="footer-link" href="/privacy/">Privacy Policy</a></li>
+			</ul>
+			<div class="footer-section footer-center col-md-4">
+				<ul class="social-links">
+					<li><a class="fb" href="https://www.facebook.com/Recology/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+					<li><a class="tw" href="https://twitter.com/RecologyWZ" target="_blank"><i class="fab fa-twitter"></i></a></li>
+					<li><a class="ln" href="https://www.linkedin.com/company/recology" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+					<li><a class="yt" href="https://www.youtube.com/user/Recologize" target="_blank"><i class="fab fa-youtube"></i></a></li>
+					<li><a class="ig" href="https://www.instagram.com/recology/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+		        </ul>
+		    </div>
+			<div class="footer-section footer-right col-md-4">
+				<!-- google translator dtop-down -->
+				<div id="google_language_translator" class="container-fluid pull-right">
+					<div class="skiptranslate goog-te-gadget" dir="ltr" style="">
+						<div id=":0.targetLanguage">
+							<select class="goog-te-combo"><option value="">Select Language</option>
+								<option value="zh-CN">Chinese (Simplified)</option>
+								<option value="zh-TW">Chinese (Traditional)</option>
+								<option value="ko">Korean</option>
+								<option value="ru">Russian</option>
+								<option value="es">Spanish</option>
+								<option value="vi">Vietnamese</option></select>
+						</div>
+						Powered by <span style="white-space: nowrap"><a
+							class="goog-logo-link" href="https://translate.google.com"
+							target="_blank"><img
+								src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_42x16dp.png"
+								width="37px" height="14px" style="padding-right: 3px"
+								alt="Google Translate">Translate</a></span>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	
+	<script src="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/js/vendor/bootstrap.min.js"></script>
+    <script src="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/js/functions.js"></script>
+	<script src="https://41k4p01v6nzq13r4y42jb9xv-wpengine.netdna-ssl.com/wp-content/themes/recology/microsites/bill-pay/js/main.js?a=2"></script>
+	
+	
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHWLF49"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-87687081-1', 'auto');
+		  ga('send', 'pageview');
+	</script>
+</body>
+</html>
