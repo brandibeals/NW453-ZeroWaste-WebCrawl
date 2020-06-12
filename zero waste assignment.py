@@ -24,7 +24,12 @@ import seaborn as sns
 import scipy
 from sklearn.cluster import KMeans
 from sklearn.manifold import TSNE
+from random import shuffle
+from sklearn.model_selection import train_test_split
 import tensorflow as tf
+from keras.models import Sequential
+from keras.layers import Dense, LSTM, Dropout, Bidirectional, Embedding, Activation
+from keras.callbacks import ModelCheckpoint, EarlyStopping
 
 ######################################
 # DIRECTORY OPERATIONS
@@ -442,21 +447,15 @@ for i in range(0, len(sentence_tokens)):
 print('Ignored sequences:', ignored)
 print('Remaining sequences:', len(first_words))
 
+# shuffle data
+map_position = list(zip(first_words, next_words))
+shuffle(map_position)
+first_words, next_words = zip(*map_position)
 
+# split data
+x_train,x_test,y_train,y_test = train_test_split(first_words, next_words, test_size=0.3)
 
-
-
-
-
-tokenizer = Tokenizer()
-input_sequences = []
-for line in body:
-    token_list = tokenizer.texts_to_sequences([line])[0]
-    for i in range(1, len(token_list)):
-        n_gram_sequence = token_list[:i+1]
-        input_sequences.append(n_gram_sequence)
-
-
+### try various model structures
 
 random_seed = 9999 # random set of initial values for reproducibility
 
@@ -464,8 +463,23 @@ random_seed = 9999 # random set of initial values for reproducibility
 # and for early stopping during training
 tf.keras.callbacks.Callback()
 
-### various model structures
 # (1) RNN
+model1 = Sequential()
+model1.add(Bidirectional(LSTM(128), input_shape=(sequence_len, len(x_train))))
+#model1.add(Dropout(dropout))
+model1.add(Dense(len(x_train)))
+model1.add(Activation('softmax'))
+
+
+
+
+
+
+
+
+
+
+
 
 # (2) LSTM
 
