@@ -27,8 +27,11 @@ from sklearn.manifold import TSNE
 from random import shuffle
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
+import numpy as np
+from keras.preprocessing.sequence import pad_sequences
+import keras.utils as ku
 from keras.models import Sequential
-from keras.layers import Dense, LSTM, Dropout, Bidirectional, Embedding, Activation
+from keras.layers import Dense, LSTM, Dropout, Bidirectional, Embedding, Activation, Flatten
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 
 ######################################
@@ -47,18 +50,18 @@ def list_all(current_directory):
 
 # set working directory and list items
 os.chdir("C:/Users/bbeals/Dropbox (Personal)/Masters in Predictive Analytics/453-DL-56/Week 10/NW453-ZeroWaste-WebCrawl")
-cd = os.getcwd()
-print(f'Your working directory is "{cd}"')
-print('and has the following structure and files:')
-list_all(cd)
+#cd = os.getcwd()
+#print(f'Your working directory is "{cd}"')
+#print('and has the following structure and files:')
+#list_all(cd)
 
 # list available spiders/crawlers
-os.system('scrapy list')
-
+#os.system('scrapy list')
+#
 # make directory for storing complete html code for web page
-page_dirname = 'html'
-if not os.path.exists(page_dirname):
-	os.makedirs(page_dirname)
+#page_dirname = 'html'
+#if not os.path.exists(page_dirname):
+#	os.makedirs(page_dirname)
 
 ######################################
 # RUN CRAWLER
@@ -66,11 +69,11 @@ if not os.path.exists(page_dirname):
 
 # output various formats: csv, JSON, XML, or jl for JSON lines
 json_file = 'items.json'
-if os.path.exists(json_file):
-    os.remove(json_file)
-#os.system(f'scrapy crawl zerowastecrawler -o {json_file}') # change .jl to .csv, .xml, or .json
-os.system('scrapy crawl zerowaste -o {json_file}')
-print(f'The Scrapy crawler has finished running.\nA {json_file} file has been created, containing its results.')
+#if os.path.exists(json_file):
+#    os.remove(json_file)
+##os.system(f'scrapy crawl zerowastecrawler -o {json_file}') # change .jl to .csv, .xml, or .json
+#os.system('scrapy crawl zerowaste -o {json_file}')
+#print(f'The Scrapy crawler has finished running.\nA {json_file} file has been created, containing its results.')
 
 ######################################
 # IMPORT TEXT
@@ -403,6 +406,7 @@ tsne2t_df.to_excel('term tsne tfidf.xlsx')
 
 # followed exercise documented here: 
 # https://medium.com/coinmonks/word-level-lstm-text-generator-creating-automatic-song-lyrics-with-neural-networks-b8a1617104fb
+# https://medium.com/@shivambansal36/language-modelling-text-generation-using-lstms-deep-learning-for-nlp-ed36b224b275
 
 ### data preparation
 # split documents into sentences
@@ -418,105 +422,178 @@ sentence_tokens = []
 
 for i in range(0, len(sentences)):
     words = word_tokenize(sentences[i])                 # split by whitespace
-    words = [w for w in words if w.isalpha()]           # remove punctuation
+    #words = [w for w in words if w.isalpha()]           # remove punctuation
     words = [w.lower() for w in words]                  # normalize case
     sentence_tokens.append(words)
 
-# specify any words to be ignored
-ignored_words = set()
+# tokenize
+tokenizer = Tokenizer()
+tokenizer.fit_on_texts(sentence_tokens)
+total_words = len(tokenizer.word_index) + 1
+word_index = tokenizer.word_index
+
+# count unique words
+token_list = []
+for i in range(0, len(sentence_tokens)):
+    for t in sentence_tokens[i]:
+        token_list.append(t)
+c = Counter(token_list)
 
 # cut the text into semi-redundant sequences
+min_frequency = 0
 step = 1
 sequence_len = 5
 first_words = []
 next_words = []
 ignored = 0
 
-for i in range(0, len(sentence_tokens)):
-    s = sentence_tokens[i]
+for line in sentence_tokens:
+    s = tokenizer.texts_to_sequences([line])[0]
     for w in range(0, len(s) - sequence_len, step):
         first_words.append(s[w: w + sequence_len])
         next_words.append(s[w + sequence_len])
-        # Only add sequences where no word is in ignored_words
-#        if len(set(body_tokens[i: i+sequence_len+1]).intersection(ignored_words)) == 0:
-#            first_words.append(body_tokens[i: i + sequence_len])
-#            next_words.append(body_tokens[i + sequence_len])
-#        else:
-#            ignored = ignored+1
-
-print('Ignored sequences:', ignored)
-print('Remaining sequences:', len(first_words))
 
 # shuffle data
 map_position = list(zip(first_words, next_words))
 shuffle(map_position)
 first_words, next_words = zip(*map_position)
 
+# reshape data
+#fw = first_words[:10]
+#nw = next_words[:10]
+#X = np.zeros((len(fw), sequence_len, total_words), dtype=np.bool)
+#y = np.zeros((len(fw), total_words), dtype=np.bool)
+#for i, sentence in enumerate(fw):
+#    for t, word in enumerate(sentence):
+#        X[i, t, word_index[word]] = 1
+#    y[i, word_index[next_words[i]]] = 1
+
 # split data
 x_train,x_test,y_train,y_test = train_test_split(first_words, next_words, test_size=0.3)
+x_train = np.asarray(x_train, dtype=np.float32)
+x_test = np.asarray(x_test, dtype=np.float32)
+y_train = np.asarray(y_train, dtype=np.float32)
+y_test = np.asarray(y_test, dtype=np.float32)
+
+x_train_text = x_train.reshape(1,-1,5)
+y_train_text = y_train.reshape(-1,1)
 
 ### try various model structures
 
+def plot_graphs(history, metric):
+    plt.plot(history.history[metric])
+    plt.plot(history.history['val_'+metric], '')
+    plt.xlabel("Epochs")
+    plt.ylabel(metric)
+    plt.legend([metric, 'val_'+metric])
+    plt.show()
+
 random_seed = 9999 # random set of initial values for reproducibility
+batch_size = 32
+epochs = 5
+dropout = 0.2
 
 # set up base class for callbacks to monitor training
 # and for early stopping during training
 tf.keras.callbacks.Callback()
 
-# (1) RNN
+file_path = "./checkpoints/LSTM_LYRICS-epoch{epoch:03d}-words%d-sequence%d-minfreq%d-loss{loss:.4f}-acc{acc:.4f}-val_loss{val_loss:.4f}-val_acc{val_acc:.4f}" % (
+    len(words),
+    sequence_len,
+    min_frequency
+)
+checkpoint = ModelCheckpoint(file_path, monitor='val_acc', save_best_only=True)
+early_stopping = EarlyStopping(monitor='val_acc', patience=5)
+callbacks_list = [checkpoint, early_stopping]
+
+# (1) Binary LSTM
 model1 = Sequential()
-model1.add(Bidirectional(LSTM(128), input_shape=(sequence_len, len(x_train))))
-#model1.add(Dropout(dropout))
-model1.add(Dense(len(x_train)))
-model1.add(Activation('softmax'))
+model1.add(Embedding(total_words, 128, input_length=sequence_len))
+model1.add(LSTM(64))
+model1.add(Dropout(dropout))
+model1.add(Dense(1, activation='sigmoid'))
+model1.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+print(model1.summary())
 
+model1hist = model1.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_test, y_test))
 
+plot_graphs(model1hist, 'accuracy')
+plot_graphs(model1hist, 'loss')
 
+model_structure = model1.to_json()
+with open("binary_lstm_weights.json", "w") as json_file:
+    json_file.write(model_structure)
+model1.save_weights("binary_lstm_weights.h5")
 
+model1_scores = model1.evaluate(x_train, y_train, verbose=0)
 
+# (2) Categorical LSTM
+model2 = Sequential()
+model2.add(Embedding(total_words, 10, input_length=sequence_len))
+model2.add(LSTM(50)) # input_shape=(len(y_train_text), sequence_len)
+#model2.add(Dropout(dropout))
+model2.add(Dense(total_words, activation='softmax'))
+model2.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+print(model2.summary())
 
+model2hist = model2.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_test, y_test))
 
+plot_graphs(model2hist, 'accuracy')
+plot_graphs(model2hist, 'loss')
 
+model_structure = model2.to_json()
+with open("categorical_lstm_weights.json", "w") as json_file:
+    json_file.write(model_structure)
+model2.save_weights("categorical_lstm_weights.h5")
 
+model2_scores = model2.evaluate(x_train, y_train, verbose=0)
 
+# (3) Binary Bidirectional LSTM
+model3 = Sequential()
+model3.add(Embedding(total_words, 256, input_length=sequence_len))
+model3.add(Bidirectional(LSTM(128)))
+model3.add(Dropout(dropout))
+model3.add(Dense(1, activation='sigmoid'))
+model3.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+print(model3.summary())
 
+model3hist = model3.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_test, y_test))
 
-# (2) LSTM
+plot_graphs(model3hist, 'accuracy')
+plot_graphs(model3hist, 'loss')
 
+scores = model3.evaluate(x_train, y_train, verbose=0)
 
+model_structure = model3.to_json()
+with open("binary_bidirectional_lstm_model.json", "w") as json_file:
+    json_file.write(model_structure)
+model3.save_weights("binary_bidirectional_lstm_model.h5")
 
-#densly connected neural net
+model3_scores = model3.evaluate(x_train, y_train, verbose=0)
 
-#1-dimensional CNN
+### make predictions
+pred_text = ['you','can','recycle','plastic','and']
 
-# (3) 
+pred_text_vec = []
+for i in pred_text:
+    p = tokenizer.texts_to_sequences([i])[0]
+    pred_text_vec.append(p)
+pred_text_vec = np.asarray(pred_text_vec, dtype=np.float32)
+action = model1.predict(pred_text_vec)
 
-# which one performed best
+def generate_text(seed_text, next_words, max_sequence_len, model):
+    for j in range(next_words):
+        text = tokenizer.texts_to_sequences([seed_text])[0]
+        text = pad_sequences([token_list], maxlen=max_sequence_len-1, padding='pre')
+        predicted = model3.predict_classes(token_list, verbose=0)
+  
+        output_word = ""
+        for word, index in tokenizer.word_index.items():
+            if index == predicted:
+                output_word = word
+                break
+        seed_text += " " + output_word
+    return seed_text
 
-### try different hyperparameters
-# early stopping, regularization, etc
-# try cutting out uncommon words
-
-# (1)
-
-# (2)
-
-# (3)
-
-# which one performed best
-
-### evaluate on various metrics (ROC curve for binary, F1 for multinomial classification)
-
-
-### visualize accuracy and loss plots
-
-
-
-### LDA classifier
-
-### PCA
-
-### CNN
-
-
-
+text = generate_text("reduce reuse and", 3, 5, model3)
+print(text)
